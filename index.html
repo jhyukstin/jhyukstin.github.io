@@ -1,11 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaehyuk's Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jaehyuk Choi — Game Portfolio</title>
+  <meta name="description" content="Game developer portfolio of Jaehyuk Choi — projects, trailers, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#0a0a0a; --ink:#ffffff; --muted:#b3b3b3; --accent:#6aa9ff; --card:#111214; --ring:rgba(255,255,255,.08); --gap:clamp(16px,3vw,28px); --radius:28px; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.4;-webkit-font-smoothing:antialiased}
+    .nav{position:sticky;top:0;z-index:10;backdrop-filter:saturate(120%) blur(10px);background:linear-gradient(to bottom, rgba(10,10,10,.9), rgba(10,10,10,.6));border-bottom:1px solid var(--ring)}
+    .nav .inner{max-width:1200px;margin:0 auto;padding:14px var(--gap);display:flex;align-items:center;gap:16px}
+    .brand{width:36px;height:36px;border-radius:50%;background: radial-gradient(120% 120% at 30% 30%, #6aa9ff, #825bff 60%, #2c2c2c 100%);box-shadow:0 0 0 1px var(--ring), 0 10px 30px rgba(106,169,255,.35) inset}
+    .spacer{flex:1}
+    .nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent}
+    .nav a:hover{border-color:var(--ring);background:rgba(255,255,255,.04)}
+    .hero{max-width:1440px;margin:0 auto;padding: clamp(32px, 6vw, 72px) var(--gap);display:grid;grid-template-columns:1.2fr .8fr;gap:var(--gap);align-items:center}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}}
+    .kicker{color:var(--muted);letter-spacing:.2em;font-size:12px;text-transform:uppercase}
+    h1{font-size:clamp(48px,10vw,160px);line-height:.85;margin:8px 0 16px;font-weight:900;letter-spacing:-.02em}
+    .subtitle{color:var(--muted);font-size:clamp(16px,2.2vw,20px);max-width:58ch}
+    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid var(--ring);color:var(--ink);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.00));padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+    .btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2);box-shadow:0 10px 24px rgba(0,0,0,.4)}
+    .btn.primary{border-color:transparent;background:linear-gradient(135deg,#6aa9ff,#825bff)}
+    .stack{display:grid;gap:var(--gap);grid-template-rows:280px 160px}
+    @media (max-width:640px){.stack{grid-template-rows:220px 140px}}
+    .panel{border-radius:var(--radius);overflow:hidden;position:relative;isolation:isolate;background:var(--card);border:1px solid var(--ring);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+    .panel img{width:100%;height:100%;object-fit:cover;display:block}
+    .blob{position:absolute;width:160px;height:160px;right:clamp(-30px,-4vw,-16px);top:clamp(-30px,-4vw,-10px);border-radius:50%;background: radial-gradient(100% 100% at 30% 30%, #d9d1ff, #9aa6ff 60%, #ffffff00 100%);mix-blend-mode:screen;filter:blur(1px);box-shadow:0 20px 60px rgba(130,91,255,.35)}
+    .section{max-width:1200px;margin:0 auto;padding:20px var(--gap) 80px}
+    .section h2{font-size:clamp(28px,4.2vw,54px);margin:40px 0 16px;letter-spacing:-.02em}
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+    .card{grid-column:span 4;min-height:340px;background:var(--card);border-radius:20px;border:1px solid var(--ring);overflow:hidden;position:relative;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.5);border-color:rgba(255,255,255,.18)}
+    .thumb{height:62%;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .meta{padding:16px 18px 18px}
+    .meta .title{font-weight:800;font-size:18px;margin:0 0 6px}
+    .meta .desc{color:var(--muted);font-size:14px;margin:0 0 10px}
+    .chip{display:inline-block;font-size:12px;color:#d8e3ff;background:rgba(130,91,255,.2);padding:6px 10px;border-radius:999px;margin-right:8px}
+    @media (max-width:1100px){.card{grid-column:span 6}} @media (max-width:720px){.card{grid-column:span 12}}
+    footer{border-top:1px solid var(--ring);color:var(--muted);padding:40px var(--gap) 80px;text-align:center}
+  </style>
 </head>
 <body>
-    Hello World
+  <!-- Nav -->
+  <header class="nav" aria-label="Primary">
+    <div class="inner">
+      <div class="brand" aria-hidden="true"></div>
+      <strong>Jaehyuk Choi</strong>
+      <div class="spacer"></div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <div class="kicker">Game Developer • Designer • Technical Artist</div>
+      <h1>Play. Build. Reflect.</h1>
+      <p class="subtitle">
+        I design and build interactive experiences across PC, mobile, and XR.
+        Below are selected works—trailers, prototypes, and case studies.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div class="panel">
+        <img alt="" loading="lazy" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop">
+        <div class="blob"></div>
+      </div>
+      <div class="panel">
+        <img alt="" loading="lazy" src="https://images.unsplash.com/photo-1536890274780-4f5f58c9a3d4?q=80&w=1600&auto=format&fit=crop">
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section" aria-label="Projects">
+    <h2>Selected Projects</h2>
+    <div class="row">
+      <!-- Overdawn -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="Overdawn visual" src="https://images.unsplash.com/photo-1612360723932-83e62a0cd5da?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">Overdawn</h3>
+          <p class="desc">2.5D action adventure exploring memory and identity with bullet-time combat.</p>
+          <span class="chip">Unity</span><span class="chip">C#</span><span class="chip">Design</span>
+          <div><a class="btn" href="#" style="margin-top:10px;display:inline-block">Trailer</a></div>
+        </div>
+      </article>
+
+      <!-- 100 Day Siege -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="100 Day Siege" src="https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">100 Day Siege</h3>
+          <p class="desc">VR game project (FoundrySix). Systems, gameplay, and iteration on combat feel.</p>
+          <span class="chip">VR</span><span class="chip">Unity</span><span class="chip">Production</span>
+          <div><a class="btn" href="#" style="margin-top:10px;display:inline-block">Demo/Notes</a></div>
+        </div>
+      </article>
+
+      <!-- The 7th Patient (USC ICT) -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="The 7th Patient" src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">The 7th Patient — USC ICT</h3>
+          <p class="desc">Research-driven game work at USC ICT; prototyping and usability testing.</p>
+          <span class="chip">USC ICT</span><span class="chip">Research</span><span class="chip">Unity</span>
+          <div><a class="btn" href="#" style="margin-top:10px;display:inline-block">Case Study</a></div>
+        </div>
+      </article>
+
+      <!-- Move Move Melon! -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="Move Move Melon!" src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">Move Move Melon!</h3>
+          <p class="desc">Fast arcade prototype focused on timing, juice, and readable feedback.</p>
+          <span class="chip">Prototype</span><span class="chip">Gameplay</span>
+        </div>
+      </article>
+
+      <!-- Venger (USC Games) -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="Venger" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">Venger — USC Games</h3>
+          <p class="desc">Team project at USC Games; contributions to systems and playfeel.</p>
+          <span class="chip">USC Games</span><span class="chip">Team</span>
+        </div>
+      </article>
+
+      <!-- Vessel (USC Games) -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="Vessel" src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">Vessel — USC Games</h3>
+          <p class="desc">Collaborative USC Games project; iteration on level flow and UX.</p>
+          <span class="chip">USC Games</span><span class="chip">Design</span>
+        </div>
+      </article>
+
+      <!-- Duoq (USC Games) -->
+      <article class="card">
+        <div class="thumb">
+          <img alt="Duoq" src="https://images.unsplash.com/photo-1602407294553-c27bb1bd2c3b?q=80&w=1600&auto=format&fit=crop">
+        </div>
+        <div class="meta">
+          <h3 class="title">Duoq — USC Games</h3>
+          <p class="desc">USC Games project exploring co-op dynamics and readability.</p>
+          <span class="chip">USC Games</span><span class="chip">Co-op</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section" aria-label="About">
+    <h2>About</h2>
+    <p class="subtitle">
+      USC Game Development student building playful systems, intuitive UI, and production-ready pipelines.
+      Experience with Unity (2D/3D/XR), technical art, and rapid prototyping. Open to internships starting May 2025.
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section" aria-label="Contact">
+    <h2>Contact</h2>
+    <p class="subtitle">
+      Email: <a href="mailto:hello@yourdomain.com" style="color: var(--accent); text-decoration:none;">hello@yourdomain.com</a>
+      &nbsp;•&nbsp; <a href="https://www.linkedin.com/in/jaehyuk-choi-583a85289/" style="color: var(--accent); text-decoration:none;">LinkedIn</a>
+      &nbsp;•&nbsp; <a href="#" style="color: var(--accent); text-decoration:none;">GitHub</a>
+    </p>
+  </section>
+
+  <footer>
+    © <span id="y"></span> Jaehyuk Choi — Built for GitHub Pages
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
