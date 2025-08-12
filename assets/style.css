@@ -222,7 +222,6 @@ h1 {
 /* Image area */
 .thumb {
   height: 80%;
-  /* same size as before */
   overflow: hidden;
 }
 
@@ -236,7 +235,6 @@ h1 {
 /* Text area */
 .meta {
   padding: 12px 14px 14px;
-  /* reduced padding for shorter cards */
 }
 
 .meta .title {
@@ -251,7 +249,6 @@ h1 {
   margin: 0 0 10px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  /* limit to 2 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -278,7 +275,6 @@ h1 {
     grid-column: span 12;
   }
 }
-
 
 footer {
   border-top: 1px solid var(--ring);
@@ -342,4 +338,28 @@ footer {
 .breadcrumbs a {
   color: var(--accent);
   text-decoration: none
+}
+
+/* ====== About & Professional Experience Images ====== */
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--gap);
+  align-items: start;
+}
+
+.split-section img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+  .split-section img {
+    margin-top: 20px;
+  }
 }
