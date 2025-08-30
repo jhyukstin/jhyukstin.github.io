@@ -1,20 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>100 Day Siege — Jaehyuk Choi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css"></head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>100 Day Siege — Jaehyuk Choi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- Page-specific styles for the section layout -->
+  <style>
+    /* Reusable block for each section of the case study */
+    .work-block { margin: 32px 0 56px; }
+    .work-block h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+
+    .work-block h4 {
+      margin: 10px 0 6px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .work-block ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+      color: #d8d8d8;
+    }
+    .work-block li { margin: 4px 0; }
+
+    /* Optional: tighten spacing on small screens */
+    @media (max-width: 600px){
+      .work-block { margin: 24px 0 40px; }
+    }
+  </style>
+</head>
 <body>
-<header class="nav"><div class="inner"><div class="brand"></div><strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong><div class="spacer"></div><nav><a href="../index.html#projects">All Projects</a></nav></div></header>
-<div class="breadcrumbs"><a href="../index.html">← Home</a></div>
-<section class="project-hero"><h1>100 Day Siege</h1><div class="project-meta">Role: VR Gameplay • Unity • 2025</div></section>
-<div class="cover"><img src="assets/images/100DS-cover.png" alt="100DaySiege cover"></div>
-<main class="content">
-  <h2>Overview</h2><p>VR combat project focusing on systems, iteration, and feel.</p>
-  <h2>My Contributions</h2>
-  <ul><li>Gameplay systems and tuning.</li><li>Combat feedback and UX readability.</li><li>Rapid iteration with playtest loops.</li></ul>
-  <h2>Links</h2><p><a class="btn" href="#" target="_blank">Demo/Notes</a></p>
-</main>
-<footer>© <span id="y"></span> Jaehyuk Choi</footer>
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-</body></html>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand"></div>
+      <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
+      <div class="spacer"></div>
+      <nav><a href="../index.html#projects">All Projects</a></nav>
+    </div>
+  </header>
+
+  <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
+
+  <section class="project-hero">
+    <h1>100 Day Siege</h1>
+    <div class="project-meta">• Game Developer • Unity • VR</div>
+  </section>
+
+  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
+  <div class="cover">
+    <img src="../assets/images/100DS-cover-project.png" alt="100 Day Siege cover">
+  </div>
+
+  <main class="content">
+    <h2>Overview</h2>
+    <p>
+      100 Day Siege is a VR tower defense game by FoundrySix where players defend a castle from enemy waves across 100 in-game days using archery, traps, and physics-based tools.
+    </p>
+
+    <!-- Block 1: Level Design -->
+    <section class="work-block">
+      <h3>Level Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/100DS_Level Design.png" alt="Level Design">
+      </div>
+      <h4>Day 1 -5 Levels</h4>
+      <ul>
+        <li>Designed and implemented 25 levels structured across Day 1–5, with each day containing 5 waves.</li>
+        <li>Optimized spatial pacing to ensure consistent player engagement and progression.</li>
+        <li>Tailored VR navigation mechanics to support comfort, immersion, and accessibility.</li>
+      </ul>
+    </section>
+
+    <!-- Block 2: Gameplay Engineering -->
+    <section class="work-block">
+      <h3>Gameplay Engineering</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or GIF -->
+        <img src="../assets/images/100DS-DamageIndicator.png" alt="Damage Indicator System">
+      </div>
+      <h4>Damage Indicator System</h4>
+      <ul>
+        <li>Built a directional damage indicator system with rotating UI elements to display real-time hit directions.</li>
+        <li>Designed specifically for a VR environment, aligning UI feedback with player perspective.</li>
+        <li>Enhanced immersion and situational awareness by notifying players of the direction of incoming enemy projectiles.</li>
+      </ul>
+    </section>
+
+    <!-- Block 3: 3D Art -->
+    <section class="work-block">
+      <h3>3D Art</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or GIF -->
+        <img src="../assets/images/100DS-SlingshotModel.png" alt="Slingshot model">
+      </div>
+      <h4>Slingshot Model</h4>
+      <ul>
+        <li>Modeled the slingshot weapon in Autodesk Maya and textured it using Adobe Substance 3D Painter.</li>
+        <li>Implemented the weapon into the VR environment with functional hand-tracking mechanics.</li>
+        <li>Integrated the slingshot with the enemy targeting script to create responsive and interactive combat gameplay.</li>
+      </ul>
+    </section>
+
+    <!-- Block 4: Documentations -->
+    <section class="work-block">
+      <h3>Documentationst</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or GIF -->
+        <img src="../assets/images/100DS-Documentations.png" alt="Documentations">
+      </div>
+      <h4>Internal-documentations</h4>
+      <ul>
+        <li>Created 13 internal documents for developers explaining custom scripts, model integration, and system behaviors for team collaboration.</li>
+      </ul>
+    </section>
+
+    <h2>Links</h2>
+<p>
+  <a class="btn" href="https://www.meta.com/experiences/27301584126152354/" target="_blank">Meta Store</a>
+  <a class="btn" href="https://youtu.be/Kt2O2WRNICs" target="_blank">Trailer</a>
+</p>
+
+
+  <footer>© <span id="y"></span> Jaehyuk Choi</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

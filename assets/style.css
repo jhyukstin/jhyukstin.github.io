@@ -363,3 +363,32 @@ footer {
     margin-top: 20px;
   }
 }
+
+/* ===== Project-only media container ===== */
+.work-media-project {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--ring);
+  background: var(--card);
+  box-shadow: 0 20px 40px rgba(0,0,0,.45);
+  margin-bottom: 12px;
+}
+
+.work-media-project img,
+.work-media-project video,
+.work-media-project iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #3f3f3f;
+}
+
+/* Optional cropped variant */
+.work-media-project.crop { aspect-ratio: 16 / 9; }
+.work-media-project.crop img,
+.work-media-project.crop video,
+.work-media-project.crop iframe {
+  height: 100%;
+  object-fit: cover;
+}
