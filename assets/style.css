@@ -49,9 +49,18 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: radial-gradient(120% 120% at 30% 30%, #6aa9ff, #825bff 60%, #2c2c2c 100%);
-  box-shadow: 0 0 0 1px var(--ring), 0 10px 30px rgba(106, 169, 255, .35) inset
+  overflow: hidden;              /* crop image into a circle */
+  border: 1px solid var(--ring);
+  flex-shrink: 0;                /* keep logo from shrinking */
 }
+
+.brand img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* makes image fill without distortion */
+  display: block;
+}
+
 
 .spacer {
   flex: 1
@@ -73,7 +82,7 @@ body {
 }
 
 .hero {
-  max-width: 1440px;
+  max-width: 620px;
   margin: 0 auto;
   padding: clamp(32px, 6vw, 72px) var(--gap);
   display: grid;
