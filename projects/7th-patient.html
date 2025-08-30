@@ -1,20 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The 7th Patient — Jaehyuk Choi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css"></head>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The 7th Patient — Jaehyuk Choi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+<!-- Page-specific styles for the section layout -->
+  <style>
+    /* Reusable block for each section of the case study */
+    .work-block { margin: 32px 0 56px; }
+    .work-block h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+
+    .work-block h4 {
+      margin: 10px 0 6px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .work-block ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+      color: #d8d8d8;
+    }
+    .work-block li { margin: 4px 0; }
+
+    /* Optional: tighten spacing on small screens */
+    @media (max-width: 600px){
+      .work-block { margin: 24px 0 40px; }
+    }
+  </style>
+</head>
 <body>
-<header class="nav"><div class="inner"><div class="brand"></div><strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong><div class="spacer"></div><nav><a href="../index.html#projects">All Projects</a></nav></div></header>
-<div class="breadcrumbs"><a href="../index.html">← Home</a></div>
-<section class="project-hero"><h1>The 7th Patient — USC ICT</h1><div class="project-meta">Role: Prototyping & Usability • Unity • 2025</div></section>
-<div class="cover"><img src="assets/images/7th-patient-cover.png" alt="7th-patient cover"></div>
-<main class="content">
-  <h2>Overview</h2><p>The 7th Patient is developed by the ICT: Institute of Creative Technologies of the University of Southern California. Support for the project has been provided by the National Science Foundation through grants DRL #2201423 and #2201424. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation.</p>
-  <h2>My Contributions</h2>
-  <ul><li>Rapid Unity prototypes for evaluation.</li><li>User studies and iteration on clarity.</li><li>Documentation and findings for the team.</li></ul>
-  <h2>Links</h2><p><a class="btn" href="#" target="_blank">Case Study</a></p>
-</main>
-<footer>© <span id="y"></span> Jaehyuk Choi</footer>
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-</body></html>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand"></div>
+      <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
+      <div class="spacer"></div>
+      <nav><a href="../index.html#projects">All Projects</a></nav>
+    </div>
+  </header>
+
+  <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
+
+  <section class="project-hero">
+    <h1>The 7th Patient</h1>
+    <div class="project-meta">• Game Developer • Unity • HCI</div>
+  </section>
+
+  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
+  <div class="cover">
+    <img src="../assets/images/.png" alt="The 7th Patient cover">
+  </div>
+
+  <main class="content">
+    <h2>Overview</h2>
+    <p>
+      The Human-Centered AI Lab conducts research in the area of human-AI collaborative problem-solving, AI ethics and society, AI education and AI for education, trust between human and AI, and persuasive AI (Dr. Ning Wang).
+      <br><br>
+      Problem-solving with Probabilistic AI: The project develops an educational game, The 7th Patient, to guide high school students in learning probability and AI through problem-solving, such as making medical diagnosis. After a successful pilot with over 1000 students in Spring 2024, the full game will be released in Q2 2025. 
+
+    <!-- Block 1: Occlusion Fade System -->
+    <section class="work-block">
+      <h3>Occlusion Fade System</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Occlusion Fade System">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 2: Minimap System -->
+    <section class="work-block">
+      <h3>Minimap System</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Minimap System">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 3: Level Design -->
+    <section class="work-block">
+      <h3>Level Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Level Design">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 4: Enemy Implementation -->
+    <section class="work-block">
+      <h3>Enemy Implementation</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Enemy Implementation">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 5: QA -->
+    <section class="work-block">
+      <h3>QA</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="QA">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <h2>Links</h2>
+<p>
+  <a class="btn" href="https://store.steampowered.com/app/3519070/Overdawn/" target="_blank">Steam</a>
+  <a class="btn" href="https://www.youtube.com/watch?v=E7KgVHyf0ak" target="_blank">Trailer</a>
+</p>
+
+
+  <footer>© <span id="y"></span> Jaehyuk Choi</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -6,6 +6,33 @@
   <title>Overdawn — Jaehyuk Choi</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/style.css" />
+  <!-- Page-specific styles for the section layout -->
+  <style>
+    /* Reusable block for each section of the case study */
+    .work-block { margin: 32px 0 56px; }
+    .work-block h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+
+    .work-block h4 {
+      margin: 10px 0 6px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .work-block ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+      color: #d8d8d8;
+    }
+    .work-block li { margin: 4px 0; }
+
+    /* Optional: tighten spacing on small screens */
+    @media (max-width: 600px){
+      .work-block { margin: 24px 0 40px; }
+    }
+  </style>
 </head>
 <body>
   <header class="nav">
@@ -21,34 +48,101 @@
 
   <section class="project-hero">
     <h1>Overdawn</h1>
-    <div class="project-meta">Role: Game Director • Unity / C# • 2025</div>
+    <div class="project-meta">• Lead Designer • Unity • Co-Founder</div>
   </section>
 
+  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
   <div class="cover">
-    <!-- Replace with your trailer or hero image -->
-    <!-- Example trailer embed: -->
-    <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
-    <img src="assets/images/overdawn-cover.png" alt="Overdawn cover">
+    <img src="../assets/images/Overdawn-cover-project.png" alt="100 Day Siege cover">
   </div>
 
   <main class="content">
     <h2>Overview</h2>
-    <p>2.5D action adventure about memory and identity. Bullet-time combat, QTE blocking, and light-driven mechanics.</p>
+    <p>
+      Overdawn is a unique 2.5D game, fast-paced, bullet-time, bullet-hell shooter featuring thrilling gunplay and precise headshots. Playing as the chosen ones, you must break back into the past, to the doom-impending state of Andrean, where your actions may alter the course of the universe. Awards - GDWC 2025 Finalists for Best Student Game & SAGE Runner Up in Design 
 
-    <h2>My Contributions</h2>
-    <ul>
-      <li>Designed combat loop and readable enemy telegraphs.</li>
-      <li>Implemented QTE block system, stamina, and animation events.</li>
-      <li>Built content pipeline and playtest loops; tuned feel.</li>
-    </ul>
+    <!-- Block 1: Level Design -->
+    <section class="work-block">
+      <h3>Level Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Level Design">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 2: Combat Design -->
+    <section class="work-block">
+      <h3>Combat Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Combat Design">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 3: Character Design -->
+    <section class="work-block">
+      <h3>Character Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Character Design">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 4: System Design -->
+    <section class="work-block">
+      <h3>System Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="System Design">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
+    <!-- Block 5: Lead Usability-->
+    <section class="work-block">
+      <h3>Lead Usability</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <img src="../assets/images/.png" alt="Usability">
+      </div>
+      <h4>Example</h4>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+
 
     <h2>Links</h2>
-    <p>
-      <a class="btn" href="#" target="_blank">Trailer</a>
-      <a class="btn" href="#" target="_blank">Playtest Notes</a>
-      <a class="btn" href="#" target="_blank">GitHub</a>
-    </p>
-  </main>
+<p>
+  <a class="btn" href="https://ict.usc.edu/research/labs-groups/human-centered-ai-lab/" target="_blank">USC ICT</a>
+  <a class="btn" href="https://www.7thpatient.org/" target="_blank">Website</a>
+</p>
+
 
   <footer>© <span id="y"></span> Jaehyuk Choi</footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>

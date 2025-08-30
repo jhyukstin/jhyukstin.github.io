@@ -6,63 +6,86 @@
   <title>Move Move Melon! — Jaehyuk Choi</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/style.css" />
+<!-- Page-specific styles for the section layout -->
+  <style>
+    /* Reusable block for each section of the case study */
+    .work-block { margin: 32px 0 56px; }
+    .work-block h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+
+    .work-block h4 {
+      margin: 10px 0 6px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .work-block ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+      color: #d8d8d8;
+    }
+    .work-block li { margin: 4px 0; }
+
+    /* Optional: tighten spacing on small screens */
+    @media (max-width: 600px){
+      .work-block { margin: 24px 0 40px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation -->
   <header class="nav">
     <div class="inner">
       <div class="brand"></div>
       <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
       <div class="spacer"></div>
-      <nav>
-        <a href="../index.html#projects">All Projects</a>
-      </nav>
+      <nav><a href="../index.html#projects">All Projects</a></nav>
     </div>
   </header>
 
-  <!-- Breadcrumb -->
   <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
 
-  <!-- Hero -->
   <section class="project-hero">
     <h1>Move Move Melon!</h1>
-    <div class="project-meta">Role: Designer / Programmer • Unity • 2024</div>
+    <div class="project-meta">• Game Designer • Unity • AGP</div>
   </section>
 
-  <!-- Cover image -->
+  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
   <div class="cover">
-    <!-- Swap this with your real project image -->
-    <img src="assets/images/move-melon-cover.png" alt="MMM-cover">
+    <img src="../assets/images/.png" alt="MMM cover">
   </div>
 
-  <!-- Main content -->
   <main class="content">
     <h2>Overview</h2>
     <p>
-      Move Move Melon! is a fast-paced arcade prototype focused on precision timing, juicy feedback, 
-      and clear player communication. The game challenges players to chain moves in rhythm and react 
-      to dynamic obstacles in quick bursts of action.
-    </p>
+      Move, Move, Melon!! is a whimsical 3D on-rails collection game where you play as Melon, a joyful hamster racing through snack-filled venues on her toy ice cream maker, a fast-paced adventure packed with charm, color, and delicious chaos. 
+      <br><br>
+      Advanced Game Project(AGP) under USC Games.
+    <!-- Block 1: Game Design -->
+    <section class="work-block">
+      <h3>Game Design</h3>
+      <div class="work-media-project">
+        <!-- Replace src with your real image or trailer frame -->
+        <!--<img src="../assets/images/.png" alt="Game Design">-->
+      </div>
+      <!--<h4>Example</h4>-->
+      <ul>
+        <li>WORK IN PROGRESS</li>
+        <!--<li>2</li>-->
+        <!--<li>3</li>-->
+      </ul>
+    </section>
 
-    <h2>My Contributions</h2>
-    <ul>
-      <li>Designed and implemented the core gameplay loop in Unity.</li>
-      <li>Created responsive controls with tight input buffering for precision.</li>
-      <li>Polished the player experience with “juicy” audio-visual feedback.</li>
-      <li>Conducted rapid playtesting sessions to balance difficulty and pacing.</li>
-    </ul>
 
     <h2>Links</h2>
-    <p>
-      <a class="btn" href="#" target="_blank">Trailer</a>
-      <a class="btn" href="#" target="_blank">Download / Build</a>
-    </p>
-  </main>
+<p>
+  <a class="btn" href="Link" target="_blank">Steam</a>
+  <a class="btn" href="Link" target="_blank">Trailer</a>
+</p>
 
-  <!-- Footer -->
+
   <footer>© <span id="y"></span> Jaehyuk Choi</footer>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
