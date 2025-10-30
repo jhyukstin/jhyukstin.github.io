@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jaehyuk Choi — Game Portfolio</title>
-  <meta name="description" content="Game developer portfolio of Jaehyuk Choi — projects, trailers, and contact." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
-</head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jaehyuk Choi — Game Portfolio</title>
+    <meta name="description" content="Game developer portfolio of Jaehyuk Choi — projects, trailers, and contact." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css" />
+    <style>
+      /* Make the Overwatch fan-project card smaller without touching global card rules */
+      .card.small { max-width: 320px; }
+      .card.small .thumb { max-height: 180px; overflow: hidden; }
+      .card.small .thumb img { width:100%; height:auto; display:block; }
+    </style>
+  </head>
 <body>
 <header class="nav" aria-label="Primary">
   <div class="inner">
@@ -38,6 +44,18 @@
   </section>
 
   <section id="projects" class="section" aria-label="Projects">
+    <h2>Fan Projects</h2>
+    <a class="card small" href="projects/Overwatch HDD.html">
+        <div class="thumb">
+          <img src="assets/images/Overwatch_coverpage.jpg" alt="Overdawn cover">
+        </div>
+        <div class="meta">
+          <h3 class="title">Overwatch</h3>
+          <p class="desc">Played 2K+ hours & retired Overwatch Esports Player</p>
+          <span class="chip">Hero Design Document</span>
+        </div>
+      </a>
+    
     <h2>Video Games</h2>
     <div class="row">
       <a class="card" href="projects/overdawn.html">

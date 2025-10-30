@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overwatch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+<!-- Page-specific styles for the section layout -->
+  <style>
+    /* Reusable block for each section of the case study */
+    .work-block { margin: 32px 0 56px; text-align: center; } /* centered content */
+    .work-block h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      margin: 0 0 12px;
+      text-align: center;
+    }
+
+    .work-block h4 {
+      margin: 10px 0 6px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .work-block ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+      color: #d8d8d8;
+      display: inline-block; /* keep lists centered */
+      text-align: left; /* keep list content left-aligned */
+    }
+    .work-block li { margin: 4px 0; }
+
+    /* Gallery layout: center images and wrap on small screens */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .gallery img {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    /* Optional: tighten spacing on small screens */
+    @media (max-width: 600px){
+      .work-block { margin: 24px 0 40px; }
+      .gallery img { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand"></div>
+      <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
+      <div class="spacer"></div>
+      <nav><a href="../index.html#projects">All Projects</a></nav>
+    </div>
+  </header>
+
+  <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
+
+  <section class="project-hero">
+    <h1>Overwatch</h1>
+    <div class="project-meta">• Hero Design Document</div>
+  </section>
+
+  </div>
+    <!-- Block 2: Magnus HDD Gallery -->
+<section class="work-block">
+  <h3>Magnus HDD Series</h3>
+  <div class="gallery">
+    <img src="../assets/images/Magnus_HDD-1.png" alt="Magnus HDD 1">
+    <img src="../assets/images/Magnus_HDD-2.png" alt="Magnus HDD 2">
+    <img src="../assets/images/Magnus_HDD-3.png" alt="Magnus HDD 3">
+    <img src="../assets/images/Magnus_HDD-4.png" alt="Magnus HDD 4">
+    <img src="../assets/images/Magnus_HDD-5.png" alt="Magnus HDD 5">
+    <img src="../assets/images/Magnus_HDD-6.png" alt="Magnus HDD 6">
+    <img src="../assets/images/Magnus_HDD-7.png" alt="Magnus HDD 7">
+    <img src="../assets/images/Magnus_HDD-8.png" alt="Magnus HDD 8">
+    <img src="../assets/images/Magnus_HDD-9.png" alt="Magnus HDD 9">
+  </div>
+</section>
+
+
+
+  <footer>© <span id="y"></span> Jaehyuk Choi</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
