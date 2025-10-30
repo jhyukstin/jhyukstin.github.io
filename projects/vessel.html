@@ -33,6 +33,21 @@
     @media (max-width: 600px){
       .work-block { margin: 24px 0 40px; }
     }
+    /* Make project meta and action buttons sit on the same row */
+    .project-hero .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .project-hero .meta-row .project-meta {
+      margin: 0;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    /* Reuse existing .btn styles from site stylesheet; ensure small padding for inline button */
+    .project-hero .meta-row .btn { padding: 6px 10px; font-size: 14px; margin-left: auto; }
   </style>
 </head>
 <body>
@@ -49,7 +64,10 @@
 
   <section class="project-hero">
     <h1>Vessel</h1>
-    <div class="project-meta">• Level Designer • UE5 • MFA Thesis</div>
+    <div class="meta-row">
+      <div class="project-meta">• Level Designer • UE5 • MFA Thesis</div>
+      <a class="btn" href="https://drive.google.com/drive/folders/1aeiz-IV8S9ZWzjxHKnkZisr6Ig-L8Evi?usp=sharing" target="_blank" rel="noopener">Work Drive</a>
+    </div>
   </section>
 
   <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
