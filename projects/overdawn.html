@@ -10,6 +10,8 @@
   <style>
     /* Reusable block for each section of the case study */
     .work-block { margin: 32px 0 56px; }
+    /* button row spacing inside work blocks */
+    .work-block .btn-row { text-align: center; margin-top: 24px; }
     .work-block h3 {
       font-size: clamp(22px, 3vw, 28px);
       font-weight: 800;
@@ -48,7 +50,14 @@
 
   <section class="project-hero">
     <h1>Overdawn</h1>
-    <div class="project-meta">• Lead Designer • Unity • Co-Founder</div>
+
+    <div class="meta-row">
+      <div class="project-meta">• Lead Designer • Unity • Co-Founder</div>
+      <div class="project-links">
+        <a class="btn" href="https://store.steampowered.com/app/3519070/Overdawn/" target="_blank" rel="noopener noreferrer">Steam</a>
+        <a class="btn" href="https://www.youtube.com/watch?v=E7KgVHyf0ak" target="_blank" rel="noopener noreferrer">Trailer</a>
+      </div>
+    </div>
   </section>
 
   <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
@@ -88,6 +97,11 @@
         <li>Revised the main character’s core mechanic to improve player experience and clarity.</li>
         <li>Designed and authored a combat design document for boss encounters.</li>
       </ul>
+
+      <!-- Button linking to the Weapon Sheet (Combat Design) -->
+      <div class="btn-row">
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1-M8eFRPXXYjcIriEBW0bhpKGvsLyIVwrFCgdznd1g-c/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open weapon sheet in a new tab">Weapon Sheet</a>
+      </div>
     </section>
 
     <!-- Block 3: Character Design -->
@@ -100,9 +114,17 @@
       <!--<h4>Example</h4>-->
       <ul>
         <li>Authored character design documents for 6 unique NPC enemies, detailing abilities, behaviors, and combat roles.</li>
-        <li>Developed character design documents for 2 bosses, focusing on mechanics, narrative integration, and progression balance.</li>
+        <li>Developed character design documents for bosses, focusing on mechanics, narrative integration, and progression balance.</li>
         <li>Collaborated closely with the narrative team to align character backstories, motivations, and worldbuilding with gameplay design.</li>
       </ul>
+
+      <!-- Button linking to the Character Design Google Doc -->
+      <div style="text-align:center; margin-top:12px;">
+        <div style="display:inline-flex; gap:8px; flex-wrap:wrap;">
+          <a class="btn" href="https://docs.google.com/document/d/1jSVj_7NPXk_hFwlufKm_kQj4k4MMa6DmL6AchRAewHs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open 6 NPC document in a new tab">NPC Document</a>
+          <a class="btn" href="https://docs.google.com/document/d/1wcH--WMvtjcEQaBlb8Ps8ZA4ROKWOYrY8QZJEYzxSnU/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open bosses document in a new tab">Rev Document</a>
+        </div>
+      </div>
     </section>
 
     <!-- Block 4: System Design -->
@@ -118,6 +140,14 @@
         <li>Developed the level progression system, balancing XP curves, difficulty pacing, and reward structures to sustain long-term player engagement.</li>
         <li>Created the quest system, outlining quest lists for each chapter, defining objectives, and integrating them with both narrative beats and gameplay progression.</li>
       </ul>
+
+      <!-- Buttons for System Design docs -->
+      <div style="text-align:center; margin-top:12px;">
+        <div style="display:inline-flex; gap:8px; flex-wrap:wrap;">
+          <a class="btn" href="https://docs.google.com/document/d/1ORktlLp4i8UgvP3j_wjoFJ8jOO9ZadCgmado75nR_1E/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open skill tree document in a new tab">Skill Tree Doc</a>
+          <a class="btn" href="https://docs.google.com/document/d/1X3qwZMSw_nKFrskixhcynMvNo77JIskvTO9iFUg_keE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open weapon wheel document in a new tab">Weapon Wheel Doc</a>
+        </div>
+      </div>
     </section>
 
     <!-- Block 5: Lead Usability-->
@@ -153,13 +183,10 @@
       </ul>
     </section>
 
-
     <h2>Links</h2>
 <p>
-  <a class="btn" href="https://store.steampowered.com/app/3519070/Overdawn/" target="_blank">Steam</a>
-  <a class="btn" href="https://www.youtube.com/watch?v=E7KgVHyf0ak" target="_blank">Trailer</a>
+  <!-- Buttons moved to hero row above -->
 </p>
-
 
   <footer>© <span id="y"></span> Jaehyuk Choi</footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>

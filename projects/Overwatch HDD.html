@@ -11,6 +11,16 @@
   <style>
     /* Reusable block for each section of the case study */
     .work-block { margin: 32px 0 56px; text-align: center; } /* centered content */
+    /* header layout: title + button on one line, centered */
+    .work-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .work-block-header h3 { margin: 0; }
+    .work-block-header .btn { white-space: nowrap; }
     .work-block h3 {
       font-size: clamp(22px, 3vw, 28px);
       font-weight: 800;
@@ -70,13 +80,19 @@
 
   <section class="project-hero">
     <h1>Overwatch</h1>
-    <div class="project-meta">• Hero Design Document</div>
+
+    <div class="meta-row">
+      <div class="project-meta">• Hero Design Document</div>
+      <div class="project-links">
+        <!-- paste the same buttons that were under Links for this page -->
+        <a class="btn" href="https://docs.google.com/document/d/1E8MFNUzfCjnr5hN7H_fZtAVkecpNjclljFCFTSmqI_c/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Magnus HDD</a>
+      </div>
+    </div>
   </section>
 
-  </div>
-    <!-- Block 2: Magnus HDD Gallery -->
+  <!-- Block 2: Magnus HDD Gallery -->
 <section class="work-block">
-  <h3>Magnus HDD Series</h3>
+
   <div class="gallery">
     <img src="../assets/images/Magnus_HDD-1.png" alt="Magnus HDD 1">
     <img src="../assets/images/Magnus_HDD-2.png" alt="Magnus HDD 2">

@@ -401,3 +401,32 @@ footer {
   height: 100%;
   object-fit: cover;
 }
+
+/* project hero: meta + right-aligned link buttons on one row */
+.project-hero .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 8px;
+    flex-wrap: wrap;
+}
+.project-hero .project-meta { /* left content */
+    font-weight: 600;
+}
+.project-hero .project-links { /* right-side buttons */
+    margin-left: auto;
+    display: inline-flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+    .project-hero .project-links { /* stack under meta on small screens */
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        margin-top: 8px;
+    }
+}
