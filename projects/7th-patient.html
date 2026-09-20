@@ -1,161 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The 7th Patient — Jaehyuk Choi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/style.css">
-<!-- Page-specific styles for the section layout -->
-  <style>
-    /* Reusable block for each section of the case study */
-    .work-block { margin: 32px 0 56px; }
-    .work-block h3 {
-      font-size: clamp(22px, 3vw, 28px);
-      font-weight: 800;
-      margin: 0 0 12px;
-    }
-
-    .work-block h4 {
-      margin: 10px 0 6px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .work-block ul {
-      margin: 0 0 0 18px;
-      padding: 0;
-      color: #d8d8d8;
-    }
-    .work-block li { margin: 4px 0; }
-
-    /* Optional: tighten spacing on small screens */
-    @media (max-width: 600px){
-      .work-block { margin: 24px 0 40px; }
-    }
-  </style>
+  <meta name="description" content="An educational game teaching high school students probability and AI through medical diagnosis.">
+  <link rel="canonical" href="https://jhyukstin.github.io/projects/7th-patient.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The 7th Patient — Jaehyuk Choi">
+  <meta property="og:description" content="An educational game teaching high school students probability and AI through medical diagnosis.">
+  <meta property="og:url" content="https://jhyukstin.github.io/projects/7th-patient.html">
+  <meta property="og:image" content="https://jhyukstin.github.io/assets/images/7th-patient-project-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f2ed">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="inner">
-      <div class="brand"></div>
-      <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
-      <div class="spacer"></div>
-      <nav><a href="../index.html#projects">All Projects</a></nav>
-    </div>
-  </header>
-
-  <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
-
-  <section class="project-hero">
-    <h1>The 7th Patient</h1>
-    <div class="project-meta">• Game Developer • Unity • HCI</div>
-  </section>
-
-  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
-  <div class="cover">
-    <img src="../assets/images/7th-patient-project-cover.png" alt="The 7th Patient cover">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__name">Jaehyuk Choi</span>
+      <span class="brand__role">Gameplay &amp; Level Designer</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../about.html">About</a>
+      <a href="#contact">Contact</a>
+      
+    </nav>
   </div>
+</header>
+<main id="main">
+<div class="wrap breadcrumb"><a href="../projects.html">← All work</a></div>
 
-  <main class="content">
-    <h2>Overview</h2>
-    <p>
-      The Human-Centered AI Lab conducts research in the area of human-AI collaborative problem-solving, AI ethics and society, AI education and AI for education, trust between human and AI, and persuasive AI (Dr. Ning Wang).
-      <br><br>
-      Problem-solving with Probabilistic AI: The project develops an educational game, The 7th Patient, to guide high school students in learning probability and AI through problem-solving, such as making medical diagnosis. After a successful pilot with over 1000 students in Spring 2024, the full game will be released in Q2 2025. 
+<section class="wrap project-head">
+  <span class="project-head__eyebrow">Games</span>
+  <h1 class="project-head__title">The 7th Patient</h1>
+  <p class="project-head__subtitle">An educational game teaching high school students probability and AI through medical diagnosis.</p>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="https://www.7thpatient.org/" target="_blank" rel="noopener">Project Website</a>
+    <a class="btn" href="https://ict.usc.edu/research/labs-groups/human-centered-ai-lab/" target="_blank" rel="noopener">USC ICT</a>
+  </div>
+</section>
 
-    <!-- Block 1: Occlusion Fade System -->
-    <section class="work-block">
-      <h3>Occlusion Fade System</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Occlusion Fade System">-->
-      </div>
-      <ul>
-        <li>Designed and implemented a custom fade shader system to smoothly fade out objects blocking the camera view.</li>
-        <li>Programmed the fade effect logic in C# and integrated it with the shader for real-time responsiveness.</li>
-        <li>Improved player visibility and overall gameplay readability by reducing camera obstruction issues.</li>
-      </ul>
-    </section>
+<div class="wrap">
+  <dl class="spec">
+    <div><dt>Role</dt><dd>Game Developer, Level Design, Gameplay Engineering</dd></div>
+    <div><dt>Team</dt><dd>USC Institute for Creative Technologies — Human-Centered AI Lab</dd></div>
+    <div><dt>Engine</dt><dd>Unity</dd></div>
+    <div><dt>Platform</dt><dd>PC</dd></div>
+    <div><dt>Genre</dt><dd>Educational / HCI research</dd></div>
+  </dl>
+</div>
+<div class="wrap">
+  <div class="project-cover"><img src="../assets/images/7th-patient-project-cover.png" alt="The 7th Patient cover art" width="2162" height="1210" style="max-width:2162px" decoding="async"></div>
+</div>
+<section class="wrap section" style="padding-block:clamp(2rem,4vw,3rem)">
+  <h2 class="label" style="margin-bottom:1rem">Overview</h2>
+  <div class="prose">
+    <p>The Human-Centered AI Lab conducts research in the area of human-AI collaborative problem-solving, AI ethics and society, AI education and AI for education, trust between human and AI, and persuasive AI (Dr. Ning Wang).</p>
+    <p>Problem-solving with Probabilistic AI: The project develops an educational game, The 7th Patient, to guide high school students in learning probability and AI through problem-solving, such as making medical diagnosis. After a successful pilot with over 1000 students in Spring 2024, the full game will be released in Q2 2025.</p>
+  </div>
+</section>
+<section class="wrap" aria-labelledby="contrib-heading">
+  <div class="section__head" style="margin-bottom:0">
+    <h2 class="section__title" id="contrib-heading">My contributions</h2>
+    <p class="section__note">Game Developer · Level Design · Gameplay Engineering</p>
+  </div>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">01</span>
+    <h3 class="block__title">Occlusion Fade System</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Designed and implemented a custom fade shader system to smoothly fade out objects blocking the camera view.</li>
+      <li>Programmed the fade effect logic in C# and integrated it with the shader for real-time responsiveness.</li>
+      <li>Improved player visibility and overall gameplay readability by reducing camera obstruction issues.</li>
+    </ul>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">02</span>
+    <h3 class="block__title">Minimap System</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Coded a custom minimap system displaying player position, enemy locations, and exits in real time.</li>
+      <li>Synced the minimap with the dialogue system to dynamically update during gameplay events.</li>
+      <li>Implemented rotation-based orientation, ensuring the minimap aligns with the player’s viewing direction for intuitive navigation.</li>
+    </ul>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">03</span>
+    <h3 class="block__title">Level Design</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Designed levels with clear player pathing, ensuring intuitive navigation and pacing.</li>
+      <li>Strategically placed enemy spawn locations to balance challenge and maintain engaging combat flow.</li>
+      <li>Integrated 3D environment assets to create immersive spaces that enhance both gameplay and narrative atmosphere.</li>
+    </ul>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">04</span>
+    <h3 class="block__title">Enemy Implementation</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Built enemy prefabs integrating animation graphs and scriptable objects to manage enemy data and behaviors.</li>
+      <li>Connected enemies with a custom spawn system, ensuring controlled pacing and encounter variety.</li>
+      <li>Synced enemy states and events with the dialogue system for seamless narrative-driven interactions.</li>
+    </ul>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">05</span>
+    <h3 class="block__title">QA</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Resolved a UI issue that caused soft locks, improving overall game stability.</li>
+      <li>Revised and fixed dialogue flows based on professor feedback and narrative direction.</li>
+      <li>Conducted iterative bug testing and validation, ensuring smoother gameplay and narrative consistency.</li>
+    </ul>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">06</span>
+    <h3 class="block__title">System Design</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Implemented ending flow, including ending scene and menu for smooth game conclusion.</li>
+      <li>Integrated the ending sequence with a post-survey screen, ensuring seamless transition from gameplay to feedback collection.</li>
+      <li>Enhanced overall game flow consistency by connecting menus, endings, and survey logic.</li>
+    </ul>
+  </div>
+  
+</section>
+</section>
+<section class="wrap section" style="padding-block:0 clamp(2.5rem,5vw,4rem)">
+  <div class="section__head">
+    <h2 class="section__title">Results</h2>
+  </div>
+  <ul class="outcomes">
+    <li>Piloted with over 1,000 high school students in Spring 2024.</li>
+  </ul>
+</section>
+<section class="wrap section" style="padding-block:0 clamp(2rem,4vw,3rem)">
+  <div class="section__head"><h2 class="section__title">Links</h2></div>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="https://www.7thpatient.org/" target="_blank" rel="noopener">Project Website</a>
+    <a class="btn" href="https://ict.usc.edu/research/labs-groups/human-centered-ai-lab/" target="_blank" rel="noopener">USC ICT</a>
+  </div>
+</section>
+<nav class="wrap pager" aria-label="More projects">
+  <a href="../projects/100-day-siege.html"><span class="label">Previous</span><strong>100 Day Siege</strong></a>
+  <a class="pager__next" href="../projects/move-move-melon.html"><span class="label">Next</span><strong>Move Move Melon!</strong></a>
+</nav>
+</main>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="label">Contact</p>
+    <h2 class="contact__title">Open to gameplay &amp; level design roles.</h2>
+    <a class="contact__email" href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a>
+    <div class="contact__links">
+      <a class="btn" href="https://www.linkedin.com/in/jaehyuk-choi-583a85289/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/jhyukstin" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Jaehyuk Choi</span>
+    <span><a href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a></span>
+  </div>
+</footer>
 
-    <!-- Block 2: Minimap System -->
-    <section class="work-block">
-      <h3>Minimap System</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Minimap System">-->
-      </div>
-      <ul>
-        <li>Coded a custom minimap system displaying player position, enemy locations, and exits in real time.</li>
-        <li>Synced the minimap with the dialogue system to dynamically update during gameplay events.</li>
-        <li>Implemented rotation-based orientation, ensuring the minimap aligns with the player’s viewing direction for intuitive navigation.</li>
-      </ul>
-    </section>
-
-    <!-- Block 3: Level Design -->
-    <section class="work-block">
-      <h3>Level Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Level Design"> -->
-      </div>
-      <ul>
-        <li>Designed levels with clear player pathing, ensuring intuitive navigation and pacing.</li>
-        <li>Strategically placed enemy spawn locations to balance challenge and maintain engaging combat flow.</li>
-        <li>Integrated 3D environment assets to create immersive spaces that enhance both gameplay and narrative atmosphere.</li>
-      </ul>
-    </section>
-
-    <!-- Block 4: Enemy Implementation -->
-    <section class="work-block">
-      <h3>Enemy Implementation</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Enemy Implementation">-->
-      </div>
-      <ul>
-        <li>Built enemy prefabs integrating animation graphs and scriptable objects to manage enemy data and behaviors.</li>
-        <li>Connected enemies with a custom spawn system, ensuring controlled pacing and encounter variety.</li>
-        <li>Synced enemy states and events with the dialogue system for seamless narrative-driven interactions.</li>
-      </ul>
-    </section>
-
-    <!-- Block 5: QA -->
-    <section class="work-block">
-      <h3>QA</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="QA">-->
-      </div>
-      <ul>
-        <li>Resolved a UI issue that caused soft locks, improving overall game stability.</li>
-        <li>Revised and fixed dialogue flows based on professor feedback and narrative direction.</li>
-        <li>Conducted iterative bug testing and validation, ensuring smoother gameplay and narrative consistency.</li>
-      </ul>
-    </section>
-
-    <!-- Block 6: System Design -->
-    <section class="work-block">
-      <h3>System Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="QA">-->
-      </div>
-      <ul>
-        <li>Implemented ending flow, including ending scene and menu for smooth game conclusion.</li>
-        <li>Integrated the ending sequence with a post-survey screen, ensuring seamless transition from gameplay to feedback collection.</li>
-        <li>Enhanced overall game flow consistency by connecting menus, endings, and survey logic.</li>
-      </ul>
-    </section>
-
-    <h2>Links</h2>
-<p>
-  <a class="btn" href="https://ict.usc.edu/research/labs-groups/human-centered-ai-lab/" target="_blank">USC ICT</a>
-  <a class="btn" href="https://www.7thpatient.org/" target="_blank">Website</a>
-</p>
-
-
-  <footer>© <span id="y"></span> Jaehyuk Choi</footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

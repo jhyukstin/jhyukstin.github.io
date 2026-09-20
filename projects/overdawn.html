@@ -1,194 +1,238 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Overdawn — Jaehyuk Choi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/style.css" />
-  <!-- Page-specific styles for the section layout -->
-  <style>
-    /* Reusable block for each section of the case study */
-    .work-block { margin: 32px 0 56px; }
-    /* button row spacing inside work blocks */
-    .work-block .btn-row { text-align: center; margin-top: 24px; }
-    .work-block h3 {
-      font-size: clamp(22px, 3vw, 28px);
-      font-weight: 800;
-      margin: 0 0 12px;
-    }
-
-    .work-block h4 {
-      margin: 10px 0 6px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .work-block ul {
-      margin: 0 0 0 18px;
-      padding: 0;
-      color: #d8d8d8;
-    }
-    .work-block li { margin: 4px 0; }
-
-    /* Optional: tighten spacing on small screens */
-    @media (max-width: 600px){
-      .work-block { margin: 24px 0 40px; }
-    }
-  </style>
+  <meta name="description" content="A 2.5D bullet-time, bullet-hell shooter set in the dying city of Andrean.">
+  <link rel="canonical" href="https://jhyukstin.github.io/projects/overdawn.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Overdawn — Jaehyuk Choi">
+  <meta property="og:description" content="A 2.5D bullet-time, bullet-hell shooter set in the dying city of Andrean.">
+  <meta property="og:url" content="https://jhyukstin.github.io/projects/overdawn.html">
+  <meta property="og:image" content="https://jhyukstin.github.io/assets/images/Overdawn-cover-project.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f2ed">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="inner">
-      <div class="brand"></div>
-      <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
-      <div class="spacer"></div>
-      <nav><a href="../index.html#projects">All Projects</a></nav>
-    </div>
-  </header>
-
-  <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
-
-  <section class="project-hero">
-    <h1>Overdawn</h1>
-
-    <div class="meta-row">
-      <div class="project-meta">• Lead Designer • Unity • Co-Founder</div>
-      <div class="project-links">
-        <a class="btn" href="https://store.steampowered.com/app/3519070/Overdawn/" target="_blank" rel="noopener noreferrer">Steam</a>
-        <a class="btn" href="https://www.youtube.com/watch?v=E7KgVHyf0ak" target="_blank" rel="noopener noreferrer">Trailer</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
-  <div class="cover">
-    <img src="../assets/images/Overdawn-cover-project.png" alt="100 Day Siege cover">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__name">Jaehyuk Choi</span>
+      <span class="brand__role">Gameplay &amp; Level Designer</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../about.html">About</a>
+      <a href="#contact">Contact</a>
+      
+    </nav>
   </div>
+</header>
+<main id="main">
+<div class="wrap breadcrumb"><a href="../projects.html">← All work</a></div>
 
-  <main class="content">
-    <h2>Overview</h2>
-    <p>
-      Overdawn is a unique 2.5D game, fast-paced, bullet-time, bullet-hell shooter featuring thrilling gunplay and precise headshots. Playing as the chosen ones, you must break back into the past, to the doom-impending state of Andrean, where your actions may alter the course of the universe. Awards - GDWC 2025 Finalists for Best Student Game & SAGE Runner Up in Design. 
+<section class="wrap project-head">
+  <span class="project-head__eyebrow">Games</span>
+  <h1 class="project-head__title">Overdawn</h1>
+  <p class="project-head__subtitle">A 2.5D bullet-time, bullet-hell shooter set in the dying city of Andrean.</p>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="https://store.steampowered.com/app/3519070/Overdawn/" target="_blank" rel="noopener">Steam</a>
+    <a class="btn" href="https://www.youtube.com/watch?v=E7KgVHyf0ak" target="_blank" rel="noopener">Trailer</a>
+  </div>
+</section>
 
-    <!-- Block 1: Level Design -->
-    <section class="work-block">
-      <h3>Level Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Level Design"> -->
-      </div>
-      <!--<h4>Example</h4>-->
-      <ul>
-        <img src="../assets/images/Overdawn_levels.png" alt="Levels" style="width:600px;">
-        <li>Created Mock-up and Block-out in engine for 30 levels.</li>
-      </ul>
-    </section>
-
-    <!-- Block 2: Combat Design -->
-    <section class="work-block">
-      <h3>Combat Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Combat Design">-->
-      </div>
-      <!--<h4>Example</h4>-->
-      <ul>
-        <li>Created comprehensive weapon and skill balance sheets for all characters and NPCs.</li>
-        <li>Revised the main character’s core mechanic to improve player experience and clarity.</li>
-        <li>Designed and authored a combat design document for boss encounters.</li>
-      </ul>
-
-      <!-- Button linking to the Weapon Sheet (Combat Design) -->
-      <div class="btn-row">
-        <a class="btn" href="https://docs.google.com/spreadsheets/d/1-M8eFRPXXYjcIriEBW0bhpKGvsLyIVwrFCgdznd1g-c/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open weapon sheet in a new tab">Weapon Sheet</a>
-      </div>
-    </section>
-
-    <!-- Block 3: Character Design -->
-    <section class="work-block">
-      <h3>Character Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Character Design">-->
-      </div>
-      <!--<h4>Example</h4>-->
-      <ul>
-        <li>Authored character design documents for 6 unique NPC enemies, detailing abilities, behaviors, and combat roles.</li>
-        <li>Developed character design documents for bosses, focusing on mechanics, narrative integration, and progression balance.</li>
-        <li>Collaborated closely with the narrative team to align character backstories, motivations, and worldbuilding with gameplay design.</li>
-      </ul>
-
-      <!-- Button linking to the Character Design Google Doc -->
-      <div style="text-align:center; margin-top:12px;">
-        <div style="display:inline-flex; gap:8px; flex-wrap:wrap;">
-          <a class="btn" href="https://docs.google.com/document/d/1jSVj_7NPXk_hFwlufKm_kQj4k4MMa6DmL6AchRAewHs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open 6 NPC document in a new tab">NPC Document</a>
-          <a class="btn" href="https://docs.google.com/document/d/1wcH--WMvtjcEQaBlb8Ps8ZA4ROKWOYrY8QZJEYzxSnU/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open bosses document in a new tab">Rev Document</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Block 4: System Design -->
-    <section class="work-block">
-      <h3>System Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="System Design">-->
-      </div>
-      <!--<h4>Example</h4>-->
-      <ul>
-        <li>Designed a comprehensive skill tree system, including structure, active skills, and passive skills, while collaborating closely with the narrative and art teams to ensure thematic and visual cohesion.</li>
-        <li>Developed the level progression system, balancing XP curves, difficulty pacing, and reward structures to sustain long-term player engagement.</li>
-        <li>Created the quest system, outlining quest lists for each chapter, defining objectives, and integrating them with both narrative beats and gameplay progression.</li>
-      </ul>
-
-      <!-- Buttons for System Design docs -->
-      <div style="text-align:center; margin-top:12px;">
-        <div style="display:inline-flex; gap:8px; flex-wrap:wrap;">
-          <a class="btn" href="https://docs.google.com/document/d/1ORktlLp4i8UgvP3j_wjoFJ8jOO9ZadCgmado75nR_1E/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open skill tree document in a new tab">Skill Tree Doc</a>
-          <a class="btn" href="https://docs.google.com/document/d/1X3qwZMSw_nKFrskixhcynMvNo77JIskvTO9iFUg_keE/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open weapon wheel document in a new tab">Weapon Wheel Doc</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Block 5: Lead Usability-->
-    <section class="work-block">
-      <h3>Lead Usability</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Usability">-->
-      </div>
-      <!--<h4>Example</h4>-->
-      <ul>
-        <li>Produced weekly Windows and Mac builds while leading a team of 5 usability and QA staff members.</li>
-        <li>Oversaw team progress, reviewed playtest notes, and synthesized findings into actionable feedback.</li>
-        <li>Collaborated closely with engineers to identify, report, and resolve bugs, ensuring smoother player experience.</li>
-      </ul>
-    </section>
-
-    <!-- Block 6: UI & UX-->
-    <section class="work-block">
-      <h3>UI and UX</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <!--<img src="../assets/images/.png" alt="Usability">-->
-      </div>
-      <!--<h4>Example</h4>-->
-      <ul>
-        <img src="../assets/images/Overdawn_Main Menu.jpg" alt="UI and UX" style="width:300px;">
-        <img src="../assets/images/Overdawn_Loadouts.png" alt="UI and UX" style="width:300px;">
-        <img src="../assets/images/Overdawn_weapon wheel.png" alt="UI and UX" style="width:300px;">
-        
-
-        <li>Designed Main Menu, weapon wheel, and loadouts.</li>
-      </ul>
-    </section>
-
-    <h2>Links</h2>
-<p>
-  <!-- Buttons moved to hero row above -->
-</p>
-
-  <footer>© <span id="y"></span> Jaehyuk Choi</footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<div class="wrap">
+  <dl class="spec">
+    <div><dt>Role</dt><dd>Lead Designer, Co-Founder, Lead Usability</dd></div>
+    <div><dt>Team</dt><dd>Overdawn Studio</dd></div>
+    <div><dt>Engine</dt><dd>Unity</dd></div>
+    <div><dt>Platform</dt><dd>PC (Steam)</dd></div>
+    <div><dt>Genre</dt><dd>2.5D bullet-hell shooter</dd></div>
+  </dl>
+</div>
+<div class="wrap">
+  <div class="video">
+  <button class="video__play" type="button" data-embed="https://www.youtube-nocookie.com/embed/E7KgVHyf0ak?rel=0&amp;modestbranding=1&amp;autoplay=1" data-title="Overdawn — official trailer">
+    <img src="../assets/images/Overdawn-cover-project.png" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+    <span class="video__button" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5.14v13.72L19 12z"/></svg></span>
+    <span class="video__label">Overdawn — official trailer</span>
+  </button>
+  <noscript><iframe class="video__frame" src="https://www.youtube-nocookie.com/embed/E7KgVHyf0ak?rel=0&amp;modestbranding=1" title="Overdawn — official trailer" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></noscript>
+</div>
+</div>
+<section class="wrap section" style="padding-block:clamp(2rem,4vw,3rem)">
+  <h2 class="label" style="margin-bottom:1rem">Overview</h2>
+  <div class="prose">
+    <p>Overdawn is a unique 2.5D game, fast-paced, bullet-time, bullet-hell shooter featuring thrilling gunplay and precise headshots. Playing as the chosen ones, you must break back into the past, to the doom-impending state of Andrean, where your actions may alter the course of the universe.</p>
+  </div>
+</section>
+<section class="wrap" aria-labelledby="contrib-heading">
+  <div class="section__head" style="margin-bottom:0">
+    <h2 class="section__title" id="contrib-heading">My contributions</h2>
+    <p class="section__note">Lead Designer · Co-Founder · Lead Usability</p>
+  </div>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">01</span>
+    <h3 class="block__title">Level Design</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Created Mock-up and Block-out in engine for 30 levels.</li>
+    </ul>
+  </div>
+  <div class="block__media"><div class="media media-grid">
+<figure><img src="../assets/images/Overdawn_levels.png" alt="Level mock-ups and in-engine block-outs for Overdawn" width="5837" height="5862" loading="lazy" decoding="async"></figure>
+</div></div>
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">02</span>
+    <h3 class="block__title">Combat Design</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Created comprehensive weapon and skill balance sheets for all characters and NPCs.</li>
+      <li>Revised the main character’s core mechanic to improve player experience and clarity.</li>
+      <li>Designed and authored a combat design document for boss encounters.</li>
+    </ul>
+    <div class="btn-row" style="margin-top:1.5rem">
+      <a class="btn" href="https://docs.google.com/spreadsheets/d/1-M8eFRPXXYjcIriEBW0bhpKGvsLyIVwrFCgdznd1g-c/edit?usp=sharing" target="_blank" rel="noopener">Weapon Sheet</a>
+    </div>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">03</span>
+    <h3 class="block__title">Character Design</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Authored character design documents for 6 unique NPC enemies, detailing abilities, behaviors, and combat roles.</li>
+      <li>Developed character design documents for bosses, focusing on mechanics, narrative integration, and progression balance.</li>
+      <li>Collaborated closely with the narrative team to align character backstories, motivations, and worldbuilding with gameplay design.</li>
+    </ul>
+    <div class="btn-row" style="margin-top:1.5rem">
+      <a class="btn" href="https://docs.google.com/document/d/1jSVj_7NPXk_hFwlufKm_kQj4k4MMa6DmL6AchRAewHs/edit?usp=sharing" target="_blank" rel="noopener">NPC Document</a>
+      <a class="btn" href="https://docs.google.com/document/d/1wcH--WMvtjcEQaBlb8Ps8ZA4ROKWOYrY8QZJEYzxSnU/edit?usp=sharing" target="_blank" rel="noopener">Rev Document</a>
+    </div>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">04</span>
+    <h3 class="block__title">System Design</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Designed a comprehensive skill tree system, including structure, active skills, and passive skills, while collaborating closely with the narrative and art teams to ensure thematic and visual cohesion.</li>
+      <li>Developed the level progression system, balancing XP curves, difficulty pacing, and reward structures to sustain long-term player engagement.</li>
+      <li>Created the quest system, outlining quest lists for each chapter, defining objectives, and integrating them with both narrative beats and gameplay progression.</li>
+    </ul>
+    <div class="btn-row" style="margin-top:1.5rem">
+      <a class="btn" href="https://docs.google.com/document/d/1ORktlLp4i8UgvP3j_wjoFJ8jOO9ZadCgmado75nR_1E/edit?usp=sharing" target="_blank" rel="noopener">Skill Tree Doc</a>
+      <a class="btn" href="https://docs.google.com/document/d/1X3qwZMSw_nKFrskixhcynMvNo77JIskvTO9iFUg_keE/edit?usp=sharing" target="_blank" rel="noopener">Weapon Wheel Doc</a>
+    </div>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">05</span>
+    <h3 class="block__title">Lead Usability</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Produced weekly Windows and Mac builds while leading a team of 5 usability and QA staff members.</li>
+      <li>Oversaw team progress, reviewed playtest notes, and synthesized findings into actionable feedback.</li>
+      <li>Collaborated closely with engineers to identify, report, and resolve bugs, ensuring smoother player experience.</li>
+    </ul>
+  </div>
+  
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">06</span>
+    <h3 class="block__title">UI and UX</h3>
+    
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Designed Main Menu, weapon wheel, and loadouts.</li>
+    </ul>
+  </div>
+  <div class="block__media"><div class="media media-grid media-grid--multi">
+<figure><img src="../assets/images/Overdawn_Main%20Menu.jpg" alt="Overdawn main menu design" width="1304" height="720" loading="lazy" decoding="async"></figure>
+<figure><img src="../assets/images/Overdawn_Loadouts.png" alt="Overdawn loadout screen design" width="1301" height="800" loading="lazy" decoding="async"></figure>
+<figure><img src="../assets/images/Overdawn_weapon%20wheel.png" alt="Overdawn weapon wheel design" width="1285" height="714" loading="lazy" decoding="async"></figure>
+</div></div>
+</section>
+</section>
+<section class="wrap section" style="padding-block:0 clamp(2.5rem,5vw,4rem)">
+  <div class="section__head">
+    <h2 class="section__title">Results</h2>
+  </div>
+  <ul class="outcomes">
+    <li>Game Without Borders (GWB) 2025 — Tencent Games Student Bronze.</li>
+    <li>GDWC 2025 Finalist — Best Student Game.</li>
+    <li>SAGE Runner Up — Design.</li>
+  </ul>
+</section>
+<section class="wrap section" style="padding-block:0 clamp(2rem,4vw,3rem)">
+  <div class="section__head"><h2 class="section__title">Links</h2></div>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="https://store.steampowered.com/app/3519070/Overdawn/" target="_blank" rel="noopener">Steam</a>
+    <a class="btn" href="https://www.youtube.com/watch?v=E7KgVHyf0ak" target="_blank" rel="noopener">Trailer</a>
+  </div>
+</section>
+<nav class="wrap pager" aria-label="More projects">
+  
+  <a class="pager__next" href="../projects/100-day-siege.html"><span class="label">Next</span><strong>100 Day Siege</strong></a>
+</nav>
+</main>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="label">Contact</p>
+    <h2 class="contact__title">Open to gameplay &amp; level design roles.</h2>
+    <a class="contact__email" href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a>
+    <div class="contact__links">
+      <a class="btn" href="https://www.linkedin.com/in/jaehyuk-choi-583a85289/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/jhyukstin" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Jaehyuk Choi</span>
+    <span><a href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a></span>
+  </div>
+</footer>
+<script>
+document.addEventListener('click', function (event) {
+  var button = event.target.closest('.video__play');
+  if (!button) return;
+  var frame = document.createElement('iframe');
+  frame.className = 'video__frame';
+  frame.src = button.dataset.embed;
+  frame.title = button.dataset.title || 'Video';
+  frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.allowFullscreen = true;
+  button.replaceWith(frame);
+});
+</script>
 </body>
 </html>

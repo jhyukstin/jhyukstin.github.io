@@ -1,0 +1,13 @@
+{
+  "name": "jhyukstin-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Game development portfolio of Jaehyuk Choi — static site generated from content files.",
+  "type": "module",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "dev": "node build/build.mjs && node build/serve.mjs",
+    "serve": "node build/serve.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

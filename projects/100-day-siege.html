@@ -1,134 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>100 Day Siege — Jaehyuk Choi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/style.css" />
-
-  <!-- Page-specific styles for the section layout -->
-  <style>
-    /* Reusable block for each section of the case study */
-    .work-block { margin: 32px 0 56px; }
-    .work-block h3 {
-      font-size: clamp(22px, 3vw, 28px);
-      font-weight: 800;
-      margin: 0 0 12px;
-    }
-
-    .work-block h4 {
-      margin: 10px 0 6px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .work-block ul {
-      margin: 0 0 0 18px;
-      padding: 0;
-      color: #d8d8d8;
-    }
-    .work-block li { margin: 4px 0; }
-
-    /* Optional: tighten spacing on small screens */
-    @media (max-width: 600px){
-      .work-block { margin: 24px 0 40px; }
-    }
-  </style>
+  <meta name="description" content="A VR medieval fantasy defense game — hold the castle for 100 days.">
+  <link rel="canonical" href="https://jhyukstin.github.io/projects/100-day-siege.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="100 Day Siege — Jaehyuk Choi">
+  <meta property="og:description" content="A VR medieval fantasy defense game — hold the castle for 100 days.">
+  <meta property="og:url" content="https://jhyukstin.github.io/projects/100-day-siege.html">
+  <meta property="og:image" content="https://jhyukstin.github.io/assets/images/100DS-cover-project.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f2ed">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="inner">
-      <div class="brand"></div>
-      <strong><a href="../index.html" style="color:inherit;text-decoration:none;">Jaehyuk Choi</a></strong>
-      <div class="spacer"></div>
-      <nav><a href="../index.html#projects">All Projects</a></nav>
-    </div>
-  </header>
-
-  <div class="breadcrumbs"><a href="../index.html">← Home</a></div>
-
-  <section class="project-hero">
-    <h1>100 Day Siege</h1>
-    <div class="project-meta">• Game Developer • Unity • VR</div>
-  </section>
-
-  <!-- (Optional) cover image; remove this entire .cover block if you don't want a top banner -->
-  <div class="cover">
-    <img src="../assets/images/100DS-cover-project.png" alt="100 Day Siege cover">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__name">Jaehyuk Choi</span>
+      <span class="brand__role">Gameplay &amp; Level Designer</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../about.html">About</a>
+      <a href="#contact">Contact</a>
+      
+    </nav>
   </div>
+</header>
+<main id="main">
+<div class="wrap breadcrumb"><a href="../projects.html">← All work</a></div>
 
-  <main class="content">
-    <h2>Overview</h2>
-    <p>
-      100 Day Siege is a VR tower defense game by FoundrySix where players defend a castle from enemy waves across 100 in-game days using archery, traps, and physics-based tools.
-    </p>
+<section class="wrap project-head">
+  <span class="project-head__eyebrow">Games</span>
+  <h1 class="project-head__title">100 Day Siege</h1>
+  <p class="project-head__subtitle">A VR medieval fantasy defense game — hold the castle for 100 days.</p>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="https://www.meta.com/experiences/27301584126152354/" target="_blank" rel="noopener">Meta Store</a>
+    <a class="btn" href="https://youtu.be/Kt2O2WRNICs" target="_blank" rel="noopener">Trailer</a>
+  </div>
+</section>
 
-    <!-- Block 1: Level Design -->
-    <section class="work-block">
-      <h3>Level Design</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or trailer frame -->
-        <img src="../assets/images/100DS_Level Design.png" alt="Level Design">
-      </div>
-      <h4>Day 1 -5 Levels</h4>
-      <ul>
-        <li>Designed and implemented 25 levels structured across Day 1–5, with each day containing 5 waves.</li>
-        <li>Optimized spatial pacing to ensure consistent player engagement and progression.</li>
-        <li>Tailored VR navigation mechanics to support comfort, immersion, and accessibility.</li>
-      </ul>
-    </section>
-
-    <!-- Block 2: Gameplay Engineering -->
-    <section class="work-block">
-      <h3>Gameplay Engineering</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or GIF -->
-        <img src="../assets/images/100DS-DamageIndicator.png" alt="Damage Indicator System">
-      </div>
-      <h4>Damage Indicator System</h4>
-      <ul>
-        <li>Built a directional damage indicator system with rotating UI elements to display real-time hit directions.</li>
-        <li>Designed specifically for a VR environment, aligning UI feedback with player perspective.</li>
-        <li>Enhanced immersion and situational awareness by notifying players of the direction of incoming enemy projectiles.</li>
-      </ul>
-    </section>
-
-    <!-- Block 3: 3D Art -->
-    <section class="work-block">
-      <h3>3D Art</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or GIF -->
-        <img src="../assets/images/100DS-SlingshotModel.png" alt="Slingshot model">
-      </div>
-      <h4>Slingshot Model</h4>
-      <ul>
-        <li>Modeled the slingshot weapon in Autodesk Maya and textured it using Adobe Substance 3D Painter.</li>
-        <li>Implemented the weapon into the VR environment with functional hand-tracking mechanics.</li>
-        <li>Integrated the slingshot with the enemy targeting script to create responsive and interactive combat gameplay.</li>
-      </ul>
-    </section>
-
-    <!-- Block 4: Documentations -->
-    <section class="work-block">
-      <h3>Documentationst</h3>
-      <div class="work-media-project">
-        <!-- Replace src with your real image or GIF -->
-        <img src="../assets/images/100DS-Documentations.png" alt="Documentations">
-      </div>
-      <h4>Internal-documentations</h4>
-      <ul>
-        <li>Created 13 internal documents for developers explaining custom scripts, model integration, and system behaviors for team collaboration.</li>
-      </ul>
-    </section>
-
-    <h2>Links</h2>
-<p>
-  <a class="btn" href="https://www.meta.com/experiences/27301584126152354/" target="_blank">Meta Store</a>
-  <a class="btn" href="https://youtu.be/Kt2O2WRNICs" target="_blank">Trailer</a>
-</p>
-
-
-  <footer>© <span id="y"></span> Jaehyuk Choi</footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<div class="wrap">
+  <dl class="spec">
+    <div><dt>Role</dt><dd>Game Developer, Level Design, 3D Art</dd></div>
+    <div><dt>Team</dt><dd>FoundrySix</dd></div>
+    <div><dt>Engine</dt><dd>Unity</dd></div>
+    <div><dt>Platform</dt><dd>VR (Meta Quest)</dd></div>
+    <div><dt>Genre</dt><dd>VR tower defense</dd></div>
+  </dl>
+</div>
+<div class="wrap">
+  <div class="video">
+  <button class="video__play" type="button" data-embed="https://www.youtube-nocookie.com/embed/Kt2O2WRNICs?rel=0&amp;modestbranding=1&amp;autoplay=1" data-title="100 Day Siege — trailer">
+    <img src="../assets/images/100DS-cover-project.png" alt="" width="1102" height="544" loading="lazy" decoding="async">
+    <span class="video__button" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5.14v13.72L19 12z"/></svg></span>
+    <span class="video__label">100 Day Siege — trailer</span>
+  </button>
+  <noscript><iframe class="video__frame" src="https://www.youtube-nocookie.com/embed/Kt2O2WRNICs?rel=0&amp;modestbranding=1" title="100 Day Siege — trailer" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></noscript>
+</div>
+</div>
+<section class="wrap section" style="padding-block:clamp(2rem,4vw,3rem)">
+  <h2 class="label" style="margin-bottom:1rem">Overview</h2>
+  <div class="prose">
+    <p>100 Day Siege is a VR tower defense game by FoundrySix where players defend a castle from enemy waves across 100 in-game days using archery, traps, and physics-based tools.</p>
+  </div>
+</section>
+<section class="wrap" aria-labelledby="contrib-heading">
+  <div class="section__head" style="margin-bottom:0">
+    <h2 class="section__title" id="contrib-heading">My contributions</h2>
+    <p class="section__note">Game Developer · Level Design · 3D Art</p>
+  </div>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">01</span>
+    <h3 class="block__title">Level Design</h3>
+    <p class="block__subtitle">Day 1–5 Levels</p>
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Designed and implemented 25 levels structured across Day 1–5, with each day containing 5 waves.</li>
+      <li>Optimized spatial pacing to ensure consistent player engagement and progression.</li>
+      <li>Tailored VR navigation mechanics to support comfort, immersion, and accessibility.</li>
+    </ul>
+  </div>
+  <div class="block__media"><div class="media media-grid">
+<figure><img src="../assets/images/100DS_Level%20Design.png" alt="Level design layouts for the Day 1–5 waves of 100 Day Siege" width="1517" height="680" loading="lazy" decoding="async"></figure>
+</div></div>
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">02</span>
+    <h3 class="block__title">Gameplay Engineering</h3>
+    <p class="block__subtitle">Damage Indicator System</p>
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Built a directional damage indicator system with rotating UI elements to display real-time hit directions.</li>
+      <li>Designed specifically for a VR environment, aligning UI feedback with player perspective.</li>
+      <li>Enhanced immersion and situational awareness by notifying players of the direction of incoming enemy projectiles.</li>
+    </ul>
+  </div>
+  <div class="block__media"><div class="media media-grid">
+<figure><img src="../assets/images/100DS-DamageIndicator.png" alt="Directional damage indicator system shown in the VR HUD" width="1278" height="669" loading="lazy" decoding="async"></figure>
+</div></div>
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">03</span>
+    <h3 class="block__title">3D Art</h3>
+    <p class="block__subtitle">Slingshot Model</p>
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Modeled the slingshot weapon in Autodesk Maya and textured it using Adobe Substance 3D Painter.</li>
+      <li>Implemented the weapon into the VR environment with functional hand-tracking mechanics.</li>
+      <li>Integrated the slingshot with the enemy targeting script to create responsive and interactive combat gameplay.</li>
+    </ul>
+  </div>
+  <div class="block__media"><div class="media media-grid">
+<figure><img src="../assets/images/100DS-SlingshotModel.png" alt="Slingshot weapon modeled in Maya and textured in Substance 3D Painter" width="1462" height="672" loading="lazy" decoding="async"></figure>
+</div></div>
+</section>
+<section class="block">
+  <div class="block__head">
+    <span class="block__index" aria-hidden="true">04</span>
+    <h3 class="block__title">Documentation</h3>
+    <p class="block__subtitle">Internal documentation</p>
+  </div>
+  <div class="block__body">
+    <ul class="bullets">
+      <li>Created 13 internal documents for developers explaining custom scripts, model integration, and system behaviors for team collaboration.</li>
+    </ul>
+  </div>
+  <div class="block__media"><div class="media media-grid">
+<figure><img src="../assets/images/100DS-Documentations.png" alt="Internal developer documentation written for the 100 Day Siege team" width="2004" height="994" loading="lazy" decoding="async"></figure>
+</div></div>
+</section>
+</section>
+<section class="wrap section" style="padding-block:0 clamp(2rem,4vw,3rem)">
+  <div class="section__head"><h2 class="section__title">Links</h2></div>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="https://www.meta.com/experiences/27301584126152354/" target="_blank" rel="noopener">Meta Store</a>
+    <a class="btn" href="https://youtu.be/Kt2O2WRNICs" target="_blank" rel="noopener">Trailer</a>
+  </div>
+</section>
+<nav class="wrap pager" aria-label="More projects">
+  <a href="../projects/overdawn.html"><span class="label">Previous</span><strong>Overdawn</strong></a>
+  <a class="pager__next" href="../projects/7th-patient.html"><span class="label">Next</span><strong>The 7th Patient</strong></a>
+</nav>
+</main>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="label">Contact</p>
+    <h2 class="contact__title">Open to gameplay &amp; level design roles.</h2>
+    <a class="contact__email" href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a>
+    <div class="contact__links">
+      <a class="btn" href="https://www.linkedin.com/in/jaehyuk-choi-583a85289/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/jhyukstin" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Jaehyuk Choi</span>
+    <span><a href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a></span>
+  </div>
+</footer>
+<script>
+document.addEventListener('click', function (event) {
+  var button = event.target.closest('.video__play');
+  if (!button) return;
+  var frame = document.createElement('iframe');
+  frame.className = 'video__frame';
+  frame.src = button.dataset.embed;
+  frame.title = button.dataset.title || 'Video';
+  frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.allowFullscreen = true;
+  button.replaceWith(frame);
+});
+</script>
 </body>
 </html>
