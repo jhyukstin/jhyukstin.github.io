@@ -27,8 +27,8 @@ export default {
   // Optional trailer. Remove this whole block to show the hero image instead.
   trailer: {
     type: 'youtube',
-    src: 'https://youtu.be/Kt2O2WRNICs',
-    title: '100 Day Siege — trailer',
+    src: 'https://www.youtube.com/watch?v=gGYVrURFTWc',
+    title: '100 Day Siege — gameplay video',
     // poster: defaults to this project's hero image
   },
 

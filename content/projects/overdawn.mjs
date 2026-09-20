@@ -28,8 +28,8 @@ export default {
   // Optional trailer. Remove this whole block to show the hero image instead.
   trailer: {
     type: 'youtube',
-    src: 'https://www.youtube.com/watch?v=E7KgVHyf0ak',
-    title: 'Overdawn — official trailer',
+    src: 'https://www.youtube.com/watch?v=0BTbBMqadKg',
+    title: 'Overdawn — project video',
     // poster: defaults to this project's hero image
   },
 
