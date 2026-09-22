@@ -121,6 +121,10 @@ export default {
     },
   ],
 
+  highlights: [
+    { text: 'Developed in Collaboration with Meta', category: 'Collaboration' },
+  ],
+
   links: [
     { label: 'Aria Spark', href: 'https://www.ariaspark.com/', primary: true },
     { label: 'Project Video', href: 'https://www.youtube.com/watch?v=Wg8d4cCvCgc' },

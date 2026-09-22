@@ -65,10 +65,12 @@ export default {
   // This is also what the project card shows, so landscape art works best.
   hero: { src: 'assets/images/my-game-hero.png', alt: 'My Game cover art' },
 
-  // Optional: a different image just for the project card. Cards use a
-  // landscape 16:9 frame and never crop — artwork is fitted inside it, so a
-  // non-16:9 image just gets a little background on its short sides.
-  // Add `fit: 'cover'` if you would rather the image fill the frame.
+  // Optional: a different image just for the project card. Cards show artwork
+  // on a landscape 16:9 plate (4:3 for portrait art) and fit it inside without
+  // cropping, so a non-16:9 image just gets a little background on its short
+  // sides. Add `fit: 'cover'` — on `cardImage`, `hero` or `thumbnail` — when
+  // the artwork should fill the plate instead and nothing important sits
+  // against its edges.
   // cardImage: { src: 'assets/images/my-game-card.png', alt: 'My Game' },
 
   /**
@@ -136,9 +138,30 @@ export default {
     items: [{ src: 'assets/images/shot-1.png', alt: 'Describe the screenshot' }],
   },
 
-  // ---------------------------------------------------------------- outcomes
-  // Awards, releases, playtest results. Facts only.
-  outcomes: [],
+  // -------------------------------------------------------------- highlights
+  /**
+   * Awards, ratings and milestones. Facts only — no invented statistics.
+   *
+   * These appear twice from this one list: as a compact "Project highlights"
+   * block on the project card, and as the Results section on the project page.
+   * Three or more highlights lay out in two columns on the card; one renders as
+   * a single row. Omit the field entirely and neither area is rendered.
+   *
+   *   text     — what is displayed (required). Write the real figure:
+   *              "2,000+ Units Sold" is shown as "2k+ Units Sold". Years,
+   *              ratings and numbers under a thousand are left alone.
+   *   category — Award | Recognition | Milestone | Rating | Collaboration
+   *              (optional; shown on the project page only)
+   *   url      — optional link, opens in a new tab
+   */
+  highlights: [
+    // { text: 'GDWC 2025 — Best Student Game Finalist', category: 'Award' },
+    // { text: '4.4/5 Stars on the Meta Store', category: 'Rating', url: 'https://...' },
+  ],
+
+  // `outcomes` is the older plain-string version of the above. Still supported
+  // for the Results section, but prefer `highlights`.
+  // outcomes: [],
 
   // ----------------------------------------------------------------- credits
   // credits: { text: 'Made with a team of 20 at ...', items: ['Name — Role'] },

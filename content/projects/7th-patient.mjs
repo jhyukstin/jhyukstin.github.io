@@ -80,8 +80,9 @@ export default {
     },
   ],
 
-  outcomes: [
-    'Piloted with over 1,000 high school students in Spring 2024.',
+  // The Spring 2024 pilot is described in full in the overview above.
+  highlights: [
+    { text: 'Playtested by 1,000+ High School Students', category: 'Milestone' },
   ],
 
   links: [

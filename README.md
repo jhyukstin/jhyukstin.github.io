@@ -99,6 +99,55 @@ awards: [
 Delete an entry to remove it. Both Education and Awards appear on the homepage
 and the About page, and each half disappears on its own if you empty it.
 
+### 1f. The cinematic homepage hero
+
+The full-screen opening sequence is built from `content/profile.mjs`:
+
+```js
+name: 'Jaehyuk Choi',            // the oversized name (splits onto two lines)
+title: 'Gameplay & Level Designer',
+heroLine: 'I create immersive worlds ...',       // the one sentence below it
+heroMarquee: ['Gameplay Design', 'Level Design', 'Interactive Experiences'],
+heroBackdrop: { src: 'assets/images/Vessel-cover-project.jpg', alt: '' },
+```
+
+- `heroBackdrop` is the faint artwork behind the type. Point it at any image in
+  `assets/images/` — keep it small, it loads first — or set it to `null` for a
+  typography-only hero.
+- **Animation speed:** one value controls the whole sequence. In
+  `assets/css/site.css`, find `.cine { --cine-beat: 0.9s; }` — lower it for a
+  snappier intro, raise it for a slower one. Phones use `0.62s`, set in the
+  `max-width: 640px` block.
+- **Colors:** the hero now inherits the site-wide palette (see below), so there
+  is nothing hero-specific to change.
+- The motion itself lives in `assets/js/hero.js` (parallax and scroll hand-off
+  only — the entrance is pure CSS and runs without JavaScript).
+
+### 1g. Publications, interests and the contact headline
+
+All three live in **`content/profile.mjs`**:
+
+```js
+personalInterests: ['Running', 'Watching sports', '...'],   // hobbies, one line
+contactHeadline: ['Have something in mind?', 'Let’s talk.'], // one string per line
+
+publications: [
+  {
+    year: '2026',
+    title: 'Paper title',
+    authors: 'Choi, J., & Choi, Y.',
+    venue: 'Journal or conference',
+    details: 'Volume, pages',     // optional
+    doi: 'https://doi.org/...',   // optional — omit and no link is shown
+  },
+],
+```
+
+Publications group themselves by `year`, newest first, and order within a year
+follows the array. Leave `doi` out for a paper without a verified link: the
+citation still renders, just without a button. `personalInterests` is separate
+from the professional `interests` list above it.
+
 ### 2. Change my professional title
 
 Still in **`content/profile.mjs`**:
@@ -274,6 +323,36 @@ featured: true,
 Set it to `false` and the project moves down into the More Projects card list.
 Nothing else needs changing.
 
+### 7b. Add an award or achievement to a project
+
+In the project's file, add a `highlights` entry:
+
+```js
+highlights: [
+  { text: 'GDWC 2025 — Best Student Game Finalist', category: 'Award' },
+  { text: '4.4/5 Stars on the Meta Store', category: 'Rating', url: 'https://...' },
+],
+```
+
+The same list appears in two places from this one definition: a compact
+"Project highlights" block on the project card, and the Results section on the
+project page. On a card they lay out in two columns when the text column is
+wide enough for two and one column when it is not; a project with a single
+highlight gets a single row; leaving the field out renders neither area.
+
+**Write the real number.** Figures of a thousand or more are abbreviated for
+display, so `'2,000+ Units Sold'` shows as **2k+ Units Sold** and
+`'1,500+ Steam Wishlists'` shows as **1.5k+ Steam Wishlists**. Your file keeps
+the full figure. Only numbers written with a comma are shortened, so years
+(2025), ratings (4.4 / 5) and anything under a thousand are left exactly as you
+typed them, and a "+" is never added to a number that did not have one.
+
+`category` is optional (Award, Recognition, Milestone, Rating, Collaboration)
+and shows on the project page only. `url` is optional and opens in a new tab
+on the project page; on a card the whole card is already a link, so the
+highlight is shown as plain text there.
+Reorder the array to reorder the highlights.
+
 ### 8b. Hide or archive a project
 
 Two levels of visibility, both reversible, and neither deletes anything:
@@ -367,6 +446,31 @@ The site updates within a minute or so. Always run `npm run build` before commit
 otherwise the published HTML won't match your content files.
 
 ---
+
+## Changing the colors
+
+The whole site is one dark theme driven by six tokens at the top of
+**`assets/css/site.css`**. Change a value there and every page follows — there
+are no hardcoded colors anywhere else:
+
+```css
+:root {
+  --color-background: #101114;   /* page background */
+  --color-surface:    #1b1d21;   /* cards, contact block */
+  --color-text:       #f5f5f5;   /* headings and body */
+  --color-text-muted: #a1a1aa;   /* descriptions, metadata */
+  --color-accent:     #c7f36b;   /* CTAs, active nav, hovers */
+  --color-border:     #34363b;   /* dividers */
+}
+```
+
+A few values are derived from those (a darker well behind images, a lighter
+border for buttons, the accent hover, and the dark ink used on accent
+buttons). They sit directly underneath, each with a comment.
+
+Older component names like `--paper`, `--ink` and `--line` still exist just
+below, but they are only aliases pointing at the tokens above — so you never
+need to touch them.
 
 ## Repository layout
 

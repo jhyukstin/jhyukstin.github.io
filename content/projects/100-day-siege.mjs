@@ -101,6 +101,14 @@ export default {
     },
   ],
 
+  highlights: [
+    {
+      text: '4.4/5 Stars on the Meta Store',
+      category: 'Rating',
+      url: 'https://www.meta.com/experiences/27301584126152354/',
+    },
+  ],
+
   links: [
     { label: 'Meta Store', href: 'https://www.meta.com/experiences/27301584126152354/', primary: true },
     { label: 'Trailer', href: 'https://youtu.be/Kt2O2WRNICs' },

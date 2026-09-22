@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://jhyukstin.github.io/">
   <meta property="og:image" content="https://jhyukstin.github.io/assets/images/main-cover.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f4f2ed">
+  <meta name="theme-color" content="#101114">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -35,24 +35,29 @@
   </div>
 </header>
 <main id="main">
-<section class="hero">
-  <div class="wrap hero__grid">
-    <div>
-      <span class="hero__title">Gameplay &amp; Level Designer</span>
-      <h1 class="hero__name">Jaehyuk Choi</h1>
-      <p class="hero__intro">I create immersive worlds and interactive experiences across PC, mobile, and XR — from a bullet-time shooter shipped on Steam to VR defense levels and AI-driven educational games. I design systems, levels and combat, then build and playtest them until they feel right.</p>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="projects.html">View work</a>
+<section class="cine" data-cine>
+  <div class="cine__backdrop" aria-hidden="true"><img src="assets/images/Overdawn-cover-project.png" alt="" decoding="async"></div>
+  <div class="cine__stage">
+    <div class="wrap">
+      <h1 class="cine__name">
+      <span class="cine__line"><span class="cine__reveal" style="--i:0">Jaehyuk</span></span>
+      <span class="cine__line"><span class="cine__reveal" style="--i:1">Choi</span></span>
+      </h1>
+      <p class="cine__role"><span class="cine__reveal" style="--i:2">Gameplay &amp; Level Designer</span></p>
+      <p class="cine__say">I create immersive worlds and interactive experiences across PC, mobile, and XR.</p>
+      <div class="cine__actions">
+        <a class="cine-btn cine-btn--primary" href="projects.html">View work</a>
+        <a class="cine-btn" href="about.html">About</a>
+        <a class="cine-btn" href="#contact">Contact</a>
         
-        <a class="btn" href="#contact">Get in touch</a>
       </div>
     </div>
-    <ul class="hero__facts">
-      <li>Gameplay Design</li>
-      <li>Level Design</li>
-      <li>XR Development</li>
-      <li>HCI Research</li>
-    </ul>
+  </div>
+  <div class="cine__foot">
+    <div class="wrap cine__foot-inner">
+      <a class="cine__scroll" href="#featured-heading"><span>Scroll</span><i aria-hidden="true"></i></a>
+      <div class="cine__marquee" aria-hidden="true"><div class="cine__track" style="--marquee-duration:74s"><span>Gameplay Design</span><i aria-hidden="true">✳</i><span>Level Design</span><i aria-hidden="true">✳</i><span>Game Systems</span><i aria-hidden="true">✳</i><span>XR Development</span><i aria-hidden="true">✳</i><span>UI/UX Design</span><i aria-hidden="true">✳</i><span>HCI Research</span><i aria-hidden="true">✳</i><span>Prototyping</span><i aria-hidden="true">✳</i><span>Player Experience</span><i aria-hidden="true">✳</i><span>Gameplay Design</span><i aria-hidden="true">✳</i><span>Level Design</span><i aria-hidden="true">✳</i><span>Game Systems</span><i aria-hidden="true">✳</i><span>XR Development</span><i aria-hidden="true">✳</i><span>UI/UX Design</span><i aria-hidden="true">✳</i><span>HCI Research</span><i aria-hidden="true">✳</i><span>Prototyping</span><i aria-hidden="true">✳</i><span>Player Experience</span><i aria-hidden="true">✳</i></div></div>
+    </div>
   </div>
 </section>
 <section class="section" aria-labelledby="featured-heading">
@@ -61,42 +66,77 @@
       <h2 class="section__title" id="featured-heading">Featured Projects</h2>
       <p class="section__note">3 of 8 projects</p>
     </div>
-<article class="feature">
-  <a class="feature__media" href="projects/overdawn.html" tabindex="-1" aria-hidden="true">
-    <img src="assets/images/Overdawn-cover-project.png" alt="Overdawn cover art" width="1920" height="1080" decoding="async">
-  </a>
-  <div class="feature__body">
-    <span class="feature__index">01 — Overdawn Studio</span>
-    <h3 class="feature__title"><a href="projects/overdawn.html">Overdawn</a></h3>
-    <p class="feature__roles">Lead Designer · Unity · PC (Steam)</p>
-    <p class="feature__summary">A 2.5D bullet-time, bullet-hell shooter set in the dying city of Andrean.</p>
-    <span class="arrow-link">View project <span aria-hidden="true">→</span></span>
+    <div class="card-grid">
+<a class="card card--feature" href="projects/overdawn.html">
+  <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">01</span> <span class="card__org">Overdawn Studio</span></p>
+    
+    <h3 class="card__title">Overdawn</h3>
+    <p class="card__roles">Lead Designer · Unity · PC (Steam)</p>
+    <p class="card__summary">A 2.5D bullet-time, bullet-hell shooter set in the dying city of Andrean.</p>
+      <div class="highlights highlights--compact">
+        <p class="highlights__label">Project highlights</p>
+        <ul class="highlights__list">
+        <li class="highlight"><span class="highlight__text">GWB 2025 — Tencent Games Student Bronze</span></li>
+        <li class="highlight"><span class="highlight__text">GDWC 2025 — Best Student Game Finalist</span></li>
+        <li class="highlight"><span class="highlight__text">SAGE — Design Runner-Up</span></li>
+        <li class="highlight"><span class="highlight__text">1.5k+ Steam Wishlists</span></li>
+        </ul>
+      </div>
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
   </div>
-</article>
-<article class="feature">
-  <a class="feature__media" href="projects/100-day-siege.html" tabindex="-1" aria-hidden="true">
-    <img src="assets/images/100DS-cover-project.png" alt="100 Day Siege cover art" width="1102" height="544" loading="lazy" decoding="async">
-  </a>
-  <div class="feature__body">
-    <span class="feature__index">02 — FoundrySix</span>
-    <h3 class="feature__title"><a href="projects/100-day-siege.html">100 Day Siege</a></h3>
-    <p class="feature__roles">Game Developer · Unity · VR (Meta Quest)</p>
-    <p class="feature__summary">A VR medieval fantasy defense game — hold the castle for 100 days.</p>
-    <span class="arrow-link">View project <span aria-hidden="true">→</span></span>
+  <div class="card__media">
+    <div class="card__plate">
+      <img src="assets/images/Overdawn-cover-project.png" alt="Overdawn cover art" width="1920" height="1080" decoding="async">
+      
+    </div>
   </div>
-</article>
-<article class="feature">
-  <a class="feature__media" href="projects/7th-patient.html" tabindex="-1" aria-hidden="true">
-    <img src="assets/images/7th-patient-project-cover.png" alt="The 7th Patient cover art" width="2162" height="1210" loading="lazy" decoding="async">
-  </a>
-  <div class="feature__body">
-    <span class="feature__index">03 — USC ICT</span>
-    <h3 class="feature__title"><a href="projects/7th-patient.html">The 7th Patient</a></h3>
-    <p class="feature__roles">Game Developer · Unity · PC</p>
-    <p class="feature__summary">An educational game teaching high school students probability and AI through medical diagnosis.</p>
-    <span class="arrow-link">View project <span aria-hidden="true">→</span></span>
+</a>
+<a class="card card--feature" href="projects/100-day-siege.html">
+  <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">02</span> <span class="card__org">FoundrySix</span></p>
+    
+    <h3 class="card__title">100 Day Siege</h3>
+    <p class="card__roles">Game Developer · Unity · VR (Meta Quest)</p>
+    <p class="card__summary">A VR medieval fantasy defense game — hold the castle for 100 days.</p>
+      <div class="highlights highlights--compact">
+        <p class="highlights__label">Project highlights</p>
+        <ul class="highlights__list">
+        <li class="highlight"><span class="highlight__text">4.4/5 Stars on the Meta Store</span></li>
+        </ul>
+      </div>
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
   </div>
-</article>
+  <div class="card__media">
+    <div class="card__plate">
+      <img src="assets/images/100DS-cover-project.png" alt="100 Day Siege cover art" width="1102" height="544" loading="lazy" decoding="async">
+      
+    </div>
+  </div>
+</a>
+<a class="card card--feature" href="projects/7th-patient.html">
+  <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">03</span> <span class="card__org">USC ICT</span></p>
+    
+    <h3 class="card__title">The 7th Patient</h3>
+    <p class="card__roles">Game Developer · Unity · PC</p>
+    <p class="card__summary">An educational game teaching high school students probability and AI through medical diagnosis.</p>
+      <div class="highlights highlights--compact">
+        <p class="highlights__label">Project highlights</p>
+        <ul class="highlights__list">
+        <li class="highlight"><span class="highlight__text">Playtested by 1k+ High School Students</span></li>
+        </ul>
+      </div>
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
+  </div>
+  <div class="card__media">
+    <div class="card__plate">
+      <img src="assets/images/7th-patient-project-cover.png" alt="The 7th Patient cover art" width="2162" height="1210" loading="lazy" decoding="async">
+      
+    </div>
+  </div>
+</a>
+    </div>
   </div>
 </section>
 <section class="section" aria-labelledby="more-heading">
@@ -107,73 +147,99 @@
     </div>
     <div class="card-grid">
 <a class="card" href="projects/move-move-melon.html">
-  <div class="card__media">
-    <img src="assets/images/MMM-cover-project.png" alt="Move Move Melon! cover art" width="1736" height="875" style="max-width:1736px" loading="lazy" decoding="async">
-    
-  </div>
   <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">01</span> <span class="card__org">USC Games</span></p>
     
-    <p class="card__org">USC Games</p>
     <h3 class="card__title">Move Move Melon!</h3>
-    <p class="card__roles">Gameplay Design · Level Design · Unity · AGP · Mobile</p>
+    <p class="card__roles">Gameplay Design · Unity · Mobile</p>
     <p class="card__summary">Whimsical 3D on-rails collection game where a hamster races.</p>
-    <span class="card__more">View project →</span>
+
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
+  </div>
+  <div class="card__media">
+    <div class="card__plate">
+      <img src="assets/images/MMM-cover-project.png" alt="Move Move Melon! cover art" width="1736" height="875" loading="lazy" decoding="async">
+      
+    </div>
   </div>
 </a>
 <a class="card" href="projects/vessel.html">
-  <div class="card__media">
-    <img src="assets/images/Vessel-cover-project.jpg" alt="Vessel cover art" width="600" height="337" style="max-width:600px" loading="lazy" decoding="async">
-    
-  </div>
   <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">02</span> <span class="card__org">USC Games</span></p>
     
-    <p class="card__org">USC Games</p>
     <h3 class="card__title">Vessel</h3>
-    <p class="card__roles">Level Design · Game Design · UE5 · MFA Thesis</p>
+    <p class="card__roles">Level Design · Unreal Engine 5 · PC (Steam)</p>
     <p class="card__summary">3D, puzzle game about swapping objects to uncover a lost underwater civilization.</p>
-    <span class="card__more">View project →</span>
+
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
+  </div>
+  <div class="card__media">
+    <div class="card__plate">
+      <img src="assets/images/Vessel-cover-project.jpg" alt="Vessel cover art" width="600" height="337" loading="lazy" decoding="async">
+      
+    </div>
   </div>
 </a>
 <a class="card" href="projects/duoq.html">
-  <div class="card__media">
-    <img src="assets/images/Duoq-cover-project.jpg" alt="DuoQ cover art" width="920" height="430" style="max-width:920px" loading="lazy" decoding="async">
-    
-  </div>
   <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">03</span> <span class="card__org">USC Games</span></p>
     
-    <p class="card__org">USC Games</p>
     <h3 class="card__title">DuoQ</h3>
-    <p class="card__roles">Usability Staff · UE5 · AGP · AI</p>
+    <p class="card__roles">Usability Staff · Unreal Engine 5 · PC (Steam)</p>
     <p class="card__summary">E-dating sim where you tackle co-op challenges with Tala.</p>
-    <span class="card__more">View project →</span>
+      <div class="highlights highlights--compact">
+        <p class="highlights__label">Project highlights</p>
+        <ul class="highlights__list">
+        <li class="highlight"><span class="highlight__text">2k+ Units Sold</span></li>
+        <li class="highlight"><span class="highlight__text">1k+ Steam Wishlists</span></li>
+        </ul>
+      </div>
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
+  </div>
+  <div class="card__media card__media--cover">
+    <div class="card__plate">
+      <img src="assets/images/Duoq-cover-project.jpg" alt="DuoQ cover art" width="920" height="430" loading="lazy" decoding="async">
+      
+    </div>
   </div>
 </a>
 <a class="card" href="projects/aria.html">
-  <div class="card__media">
-    <img src="assets/images/aria-spark-logo.jpg" alt="Aria Spark logo" width="300" height="168" style="max-width:300px" loading="lazy" decoding="async">
-    
-  </div>
   <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">04</span> <span class="card__org">Aria Spark</span></p>
     
-    <p class="card__org">Aria Spark</p>
     <h3 class="card__title">Aria</h3>
-    <p class="card__roles">Gamification · UI &amp; UX Design · AR · Firebase · Figma</p>
+    <p class="card__roles">Gamification · Meta Quest 3</p>
     <p class="card__summary">AR AI assistant for Meta Quest 3, built with Aria Spark in collaboration with Meta.</p>
-    <span class="card__more">View project →</span>
+      <div class="highlights highlights--compact">
+        <p class="highlights__label">Project highlights</p>
+        <ul class="highlights__list">
+        <li class="highlight"><span class="highlight__text">Developed in Collaboration with Meta</span></li>
+        </ul>
+      </div>
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
+  </div>
+  <div class="card__media">
+    <div class="card__plate">
+      <img src="assets/images/aria-spark-logo.jpg" alt="Aria Spark logo" width="300" height="168" loading="lazy" decoding="async">
+      
+    </div>
   </div>
 </a>
 <a class="card" href="projects/soft-things-hit-hard.html">
-  <div class="card__media">
-    <img src="assets/images/STHH-banner.png" alt="Soft Things Hit Hard logo: two Play-Doh creatures armed with a pencil and paper clips" width="672" height="502" style="max-width:672px" loading="lazy" decoding="async">
-    <span class="card__badge">In development</span>
-  </div>
   <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">05</span> <span class="card__org">USC Games</span></p>
     
-    <p class="card__org">USC Games</p>
     <h3 class="card__title">Soft Things Hit Hard</h3>
     <p class="card__roles">Gameplay &amp; Level Designer</p>
     <p class="card__summary">Third-person party mini-royale where squishy creatures scavenge junk and assemble weapons.</p>
-    <span class="card__more">View project →</span>
+
+    <span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>
+  </div>
+  <div class="card__media card__media--upright">
+    <div class="card__plate">
+      <img src="assets/images/STHH-banner.png" alt="Soft Things Hit Hard logo: two Play-Doh creatures armed with a pencil and paper clips" width="672" height="502" loading="lazy" decoding="async">
+      <span class="card__badge">In development</span>
+    </div>
   </div>
 </a>
     </div>
@@ -229,7 +295,7 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <p class="label">Contact</p>
-    <h2 class="contact__title">Open to gameplay &amp; level design roles.</h2>
+    <h2 class="contact__title">Have something in mind?<br>Let’s talk.</h2>
     <a class="contact__email" href="mailto:jaehyuk@usc.edu">jaehyuk@usc.edu</a>
     <div class="contact__links">
       <a class="btn" href="https://www.linkedin.com/in/jaehyuk-choi-583a85289/" target="_blank" rel="noopener">LinkedIn</a>
@@ -244,5 +310,6 @@
   </div>
 </footer>
 
+<script src="assets/js/hero.js" defer></script>
 </body>
 </html>

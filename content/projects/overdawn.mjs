@@ -118,10 +118,16 @@ export default {
     },
   ],
 
-  outcomes: [
-    'Game Without Borders (GWB) 2025 — Tencent Games Student Bronze.',
-    'GDWC 2025 Finalist — Best Student Game.',
-    'SAGE Runner Up — Design.',
+  // Shown on the homepage card and as the Results section on this page.
+  highlights: [
+    { text: 'GWB 2025 — Tencent Games Student Bronze', category: 'Award' },
+    { text: 'GDWC 2025 — Best Student Game Finalist', category: 'Award' },
+    { text: 'SAGE — Design Runner-Up', category: 'Award' },
+    {
+      text: '1,500+ Steam Wishlists',
+      category: 'Milestone',
+      url: 'https://store.steampowered.com/app/3519070/Overdawn/',
+    },
   ],
 
   links: [

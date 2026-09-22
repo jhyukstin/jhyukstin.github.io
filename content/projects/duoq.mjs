@@ -22,7 +22,9 @@ export default {
   },
 
   thumbnail: { src: 'assets/images/Duoq-cover.png', alt: 'DuoQ key art' },
-  hero: { src: 'assets/images/Duoq-cover-project.jpg', alt: 'DuoQ cover art' },
+  // Wider than the card's 16:9 frame, and the logo sits in the middle well
+  // clear of the edges, so this one can safely fill the frame.
+  hero: { src: 'assets/images/Duoq-cover-project.jpg', alt: 'DuoQ cover art', fit: 'cover' },
 
   // Optional trailer. Remove this whole block to show the hero image instead.
   trailer: {
@@ -43,6 +45,15 @@ export default {
         'Led weekly playtest sessions and document findings using the RITE method.',
         'Collaborated closely with designers and QA teams to iterate and improve gameplay.',
       ],
+    },
+  ],
+
+  highlights: [
+    { text: '2,000+ Units Sold', category: 'Milestone' },
+    {
+      text: '1,000+ Steam Wishlists',
+      category: 'Milestone',
+      url: 'https://store.steampowered.com/app/3677620/DuoQ/',
     },
   ],
 

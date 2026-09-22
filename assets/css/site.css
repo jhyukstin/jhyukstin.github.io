@@ -1,28 +1,54 @@
 /* ==========================================================================
    Jaehyuk Choi — portfolio design system
-   Editorial, paper-light, one accent. Game media carries the color.
+   Editorial, cinematic dark, one accent. Game media carries the color.
    ========================================================================== */
 
 /* -------------------------------------------------------------- 1. tokens */
 :root {
-  /* surface */
-  --paper: #f4f2ed;
-  --paper-sunk: #eae6dd;
-  --paper-card: #fbfaf7;
-  --ink-deep: #14120f;
+  color-scheme: dark;
 
-  /* text */
-  --ink: #14120f;
-  --ink-soft: #5b5751;
-  --ink-faint: #8a857c;
-  --on-dark: #f4f2ed;
-  --on-dark-soft: #a8a299;
+  /* ------------------------------------------------- theme (edit here) --
+     These six semantic tokens are the whole palette. Everything else in
+     this file is derived from them, so changing a value here restyles the
+     entire site. */
+  --color-background: #101114;
+  --color-surface: #1b1d21;
+  --color-text: #f5f5f5;
+  --color-text-muted: #a1a1aa;
+  --color-accent: #c7f36b;
+  --color-border: #34363b;
 
-  /* line + accent */
-  --line: #ddd8cd;
-  --line-strong: #c6c0b2;
-  --accent: #b0341a;
-  --accent-deep: #8d2913;
+  /* Derived: a well behind media, a brighter border for controls, an
+     accent hover, ink for text sitting on the accent, and a scrim for
+     labels that overlap artwork. */
+  --color-well: #16181c;
+  /* Interactive borders (buttons, chips) need 3:1 against the background to
+     meet WCAG 1.4.11, so this is lighter than the plain divider colour. */
+  --color-border-strong: #676a70;
+  --color-accent-hover: #d9ff8f;
+  --color-on-accent: #12140c;
+  --color-text-faint: #8a8e96;
+  --color-scrim: rgba(16, 17, 20, 0.82);
+  --color-hairline: rgba(245, 245, 245, 0.14);
+
+  /* ---------------------------------------------- component aliases ----
+     Kept so every existing rule keeps working; all of them resolve to the
+     tokens above rather than to a colour of their own. */
+  --paper: var(--color-background);
+  --paper-sunk: var(--color-well);
+  --paper-card: var(--color-surface);
+  --ink-deep: var(--color-background);
+
+  --ink: var(--color-text);
+  --ink-soft: var(--color-text-muted);
+  --ink-faint: var(--color-text-faint);
+  --on-dark: var(--color-text);
+  --on-dark-soft: var(--color-text-muted);
+
+  --line: var(--color-border);
+  --line-strong: var(--color-border-strong);
+  --accent: var(--color-accent);
+  --accent-deep: var(--color-accent-hover);
 
   /* type */
   --font-sans: 'Archivo', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -97,7 +123,7 @@ hr {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -216,7 +242,7 @@ hr {
 }
 
 .site-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
-.site-nav a[aria-current='page'] { color: var(--ink); border-bottom-color: var(--ink); }
+.site-nav a[aria-current='page'] { color: var(--color-accent); border-bottom-color: var(--color-accent); }
 
 .site-nav a.nav-resume {
   border: 1px solid var(--line-strong);
@@ -266,12 +292,12 @@ hr {
 .btn--primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 .btn--primary:hover {
   background: var(--accent-deep);
   border-color: var(--accent-deep);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 .btn--ghost { border-color: transparent; padding-inline: 0; }
@@ -299,7 +325,295 @@ hr {
 .arrow-link span { transition: transform 0.18s ease; }
 a:hover > .arrow-link span,
 .arrow-link:hover span,
-.feature:hover .arrow-link span { transform: translateX(4px); }
+.card:hover .arrow-link span,
+.card:focus-within .arrow-link span { transform: translateX(4px); }
+
+/* ------------------------------------------------- 5b. cinematic hero */
+/*
+   Full-viewport opening sequence on the homepage only. Dark and self
+   contained: its colours come from the global palette. The entrance is pure CSS and runs without JavaScript; hero.js only
+   feeds --scroll, --mx and --my for the parallax and the scroll hand-off.
+   Timing lives in --cine-beat — raise it to slow the whole sequence down.
+*/
+.cine {
+  --cine-bg: var(--color-background);
+  --cine-ink: var(--color-text);
+  --cine-soft: var(--color-text-muted);
+  --cine-accent: var(--color-accent);
+  --cine-beat: 0.9s;
+  --scroll: 0;
+  --mx: 0;
+  --my: 0;
+
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: calc(100vh - var(--header-h, 4rem)); /* fallback */
+  min-height: calc(100svh - var(--header-h, 4rem));
+  padding-block: clamp(2rem, 6vw, 4rem) 0;
+  overflow: clip;
+  background: var(--cine-bg);
+  color: var(--cine-ink);
+  isolation: isolate;
+}
+
+/* Existing project artwork, dimmed right down to read as atmosphere. */
+.cine__backdrop {
+  position: absolute;
+  inset: -6%;
+  z-index: -1;
+  opacity: 0;
+  animation: cine-backdrop calc(var(--cine-beat) * 2.4) ease-out 0.15s both;
+}
+
+.cine__backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.45) contrast(1.05);
+  transform: scale(calc(1.06 + var(--scroll) * 0.12))
+    translate3d(calc(var(--mx) * -10px), calc(var(--my) * -10px), 0);
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Keeps the type legible over the artwork without a decorative gradient wash. */
+.cine__backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 35%, rgba(16, 17, 20, 0.55), var(--cine-bg) 78%);
+}
+
+.cine__stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate3d(calc(var(--mx) * 6px), calc(var(--scroll) * -7vh), 0)
+    scale(calc(1 - var(--scroll) * 0.06));
+  opacity: calc(1 - var(--scroll) * 1.15);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* -- the name ----------------------------------------------------------- */
+.cine__name {
+  margin: 0;
+  font-size: clamp(3.25rem, 15vw, 11.5rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Each line is a mask its text slides up into. */
+.cine__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.cine__reveal {
+  display: block;
+  transform: translateY(110%);
+  animation: cine-rise calc(var(--cine-beat) * 1.3) cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.12s + var(--i, 0) * var(--cine-beat) * 0.16);
+}
+
+.cine__role {
+  margin: clamp(1rem, 2.5vw, 1.75rem) 0 0;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cine-accent);
+}
+
+.cine__say {
+  max-width: 44ch;
+  margin: clamp(1.25rem, 3vw, 2rem) 0 0;
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+  color: var(--cine-soft);
+  opacity: 0;
+  animation: cine-fade var(--cine-beat) ease-out both;
+  animation-delay: calc(var(--cine-beat) * 0.85);
+}
+
+.cine__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  opacity: 0;
+  animation: cine-fade var(--cine-beat) ease-out both;
+  animation-delay: calc(var(--cine-beat) * 1.05);
+}
+
+.cine-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.35rem;
+  border: 1px solid var(--color-border-strong);
+  color: var(--cine-ink);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.cine-btn:hover {
+  background: var(--cine-ink);
+  border-color: var(--cine-ink);
+  color: var(--cine-bg);
+}
+.cine-btn--primary {
+  background: var(--cine-accent);
+  border-color: var(--cine-accent);
+  color: var(--color-on-accent);
+  font-weight: 500;
+}
+.cine-btn--primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-on-accent);
+}
+.cine :focus-visible { outline-color: var(--cine-accent); }
+
+/* -- foot: scroll cue + marquee ----------------------------------------- */
+.cine__foot {
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  opacity: 0;
+  animation: cine-fade var(--cine-beat) ease-out both;
+  animation-delay: calc(var(--cine-beat) * 1.25);
+}
+
+.cine__foot-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+
+.cine__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cine-soft);
+}
+.cine__scroll:hover { color: var(--cine-ink); }
+.cine__scroll i {
+  width: 1px;
+  height: 2.25rem;
+  background: linear-gradient(to bottom, var(--cine-accent), transparent);
+  animation: cine-cue 2.4s ease-in-out infinite;
+  transform-origin: top;
+}
+
+.cine__marquee {
+  flex: 1;
+  overflow: hidden;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 0.875rem;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.cine__track {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cine-soft);
+  /* Duration is set per page from the keyword count, so the scroll speed stays
+     the same however long the strip is. */
+  animation: cine-marquee var(--marquee-duration, 34s) linear infinite;
+}
+
+/* Small lime separator. The glyph is not in IBM Plex Mono, so symbol fonts
+   lead the stack to stop it falling back to a missing-character box. */
+.cine__track i {
+  font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', var(--font-mono), sans-serif;
+  font-size: 0.5625rem;
+  font-style: normal;
+  line-height: 1;
+  color: var(--cine-accent);
+}
+
+/* The header sits transparent over the dark hero, then returns to paper. */
+.site-header--ghost {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+.site-header--ghost .brand__name,
+.site-header--ghost .site-nav a[aria-current='page'] { color: var(--color-accent); }
+.site-header--ghost .brand__role,
+.site-header--ghost .site-nav a { color: var(--color-text-muted); }
+.site-header--ghost .site-nav a:hover { color: var(--color-text); }
+.site-header--ghost .nav-resume { border-color: var(--color-border-strong); }
+.site-header--ghost .nav-resume:hover {
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-background);
+}
+
+@keyframes cine-rise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+@keyframes cine-fade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cine-backdrop {
+  from { opacity: 0; }
+  to { opacity: 0.22; }
+}
+@keyframes cine-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes cine-cue {
+  0%, 100% { transform: scaleY(0.35); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  /* Shorter, simpler entrance and no wasted vertical space on phones. */
+  .cine { --cine-beat: 0.62s; }
+  .cine__name { font-size: clamp(2.75rem, 17vw, 5rem); }
+  .cine__foot-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .cine__marquee { width: 100%; }
+  .cine__actions { gap: 0.5rem; }
+  .cine-btn { padding: 0.65rem 1rem; }
+}
+
+/* Reduced motion: the finished composition, no movement at all. */
+@media (prefers-reduced-motion: reduce) {
+  .cine__backdrop { opacity: 0.22; animation: none; }
+  .cine__backdrop img { transform: none; transition: none; }
+  .cine__stage { transform: none; opacity: 1; transition: none; }
+  .cine__reveal,
+  .cine__say,
+  .cine__actions,
+  .cine__foot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .cine__track { animation: none; }
+  .cine__scroll i { animation: none; opacity: 0.8; transform: none; }
+}
 
 /* ---------------------------------------------------------------- 6. hero */
 .hero {
@@ -381,82 +695,17 @@ a:hover > .arrow-link span,
   color: var(--ink-faint);
 }
 
-/* --------------------------------------------------- 8. featured projects */
-.feature {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center;
-  padding-block: clamp(2rem, 5vw, 3.5rem);
-  border-bottom: 1px solid var(--line);
-}
-.feature:first-of-type { padding-top: 0; }
+/* -------------------------------------------------------- 8. project cards */
+/*
+   One card component for every project listing on the site: Featured Projects
+   and More projects on the homepage, and each section of the Work page.
 
-.feature:nth-child(even) .feature__media { order: 2; }
-
-.feature__media {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  background: var(--paper-sunk);
-  border: 1px solid var(--line);
-}
-
-/* Cover banners keep their own proportions — nothing is cropped here. */
-.feature__media img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
-}
-
-.feature:hover .feature__media img,
-.feature:focus-within .feature__media img { transform: scale(1.025); }
-
-.feature__index {
-  font-family: var(--font-mono);
-  font-size: var(--fs-label);
-  letter-spacing: 0.16em;
-  color: var(--ink-faint);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.feature__title {
-  font-size: clamp(1.875rem, 3.6vw, 2.875rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 0.5rem;
-}
-.feature__title a {
-  text-decoration: none;
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-size: 0% 2px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size 0.3s ease;
-}
-.feature:hover .feature__title a,
-.feature__title a:focus-visible { background-size: 100% 2px; }
-
-.feature__roles {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: var(--accent);
-  margin-bottom: 0.875rem;
-}
-
-.feature__summary {
-  color: var(--ink-soft);
-  margin-bottom: 1.5rem;
-  max-width: 44ch;
-}
-
-@media (max-width: 800px) {
-  .feature { grid-template-columns: 1fr; gap: 1.25rem; }
-  .feature:nth-child(even) .feature__media { order: 0; }
-}
-
-/* ----------------------------------------------- 9. horizontal project card */
+   Information on the left at 55%, artwork on the right at 45%. Both are
+   ordinary grid tracks that grow with their content — no fixed heights, no
+   absolute positioning for anything that carries meaning, and nothing hidden,
+   so a long title or an extra highlight makes the card taller instead of
+   spilling out of it.
+*/
 .card-grid {
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
@@ -464,11 +713,13 @@ a:hover > .arrow-link span,
 
 .card {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  grid-template-areas: 'body media';
   align-items: stretch;
   background: var(--paper-card);
   border: 1px solid var(--line);
   text-decoration: none;
+  color: inherit;
   transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
@@ -477,33 +728,140 @@ a.card:hover {
   transform: translateY(-2px);
 }
 
-/* Landscape frame: cover art keeps its own proportions inside it. */
-.card__media {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  background: var(--paper-sunk);
-  border-right: 1px solid var(--line);
+/* ------------------------------------------------------------- information */
+.card__body {
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: clamp(1.25rem, 2.5vw, 2.25rem);
+  min-width: 0;
+  /* Lets the highlights below size themselves against this column rather than
+     against the viewport, which says nothing about how wide the column is. */
+  container: card-info / inline-size;
 }
 
-.card__media img {
+/* "01 — USC Games": the project number and the studio it was made at. */
+.card__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.card__index { color: var(--accent); }
+.card__eyebrow .card__org::before { content: '—'; margin-right: 0.5rem; }
+
+.card__org { margin: 0; }
+
+.card__flag {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.card__title {
+  margin: 0;
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  transition: color 0.18s ease;
+}
+a.card:hover .card__title { color: var(--accent); }
+
+.card__roles {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.card__summary {
+  margin: 0;
+  max-width: 54ch;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.card__more {
+  align-self: flex-start;
+  margin-top: 0.375rem;
+}
+.card--static { cursor: default; }
+
+/* Featured projects: the same layout and the same order, one size up. */
+.card--feature .card__body {
+  gap: 0.625rem;
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+}
+.card--feature .card__title { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.card--feature .card__roles { font-size: 0.8125rem; }
+.card--feature .card__summary { font-size: var(--fs-body); }
+
+/* ----------------------------------------------------------------- artwork */
+/*
+   The artwork sits on a plate with a fixed 16:9 ratio, centred in the column.
+   Keeping the ratio on the plate rather than on the column means a card that
+   grows taller than its artwork — a long title, an extra highlight — gains
+   quiet space either side of the plate instead of stretching the artwork's
+   well into a tall empty box around it.
+
+   The image is pinned to the plate's four edges and fitted inside, so it is
+   never given a width of its own: it can never end up floating at its own
+   small natural size, and it is never stretched out of shape.
+*/
+.card__media {
+  grid-area: media;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-left: 1px solid var(--line);
+}
+
+.card__plate {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--paper-sunk);
+}
+
+/* Box art and portrait key art get a squarer plate rather than being left
+   floating in the middle of a wide one. */
+.card__media--upright .card__plate { aspect-ratio: 4 / 3; }
+
+.card__plate img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  margin-inline: auto;
   object-fit: contain;
   object-position: center;
   transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-/* Opt in per project when artwork should fill the frame instead. */
-.card__media--cover img { object-fit: cover; }
-a.card:hover .card__media img { transform: scale(1.03); }
+/* Opt in per project (fit: 'cover' in the content file) when the artwork can
+   safely fill the frame — when nothing important sits against its edges. */
+.card__media--cover .card__plate img { object-fit: cover; }
+a.card:hover .card__plate img { transform: scale(1.03); }
 
 .card__badge {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  background: var(--ink-deep);
+  background: var(--color-scrim);
   color: var(--on-dark);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
@@ -512,80 +870,33 @@ a.card:hover .card__media img { transform: scale(1.03); }
   padding: 0.3rem 0.55rem;
 }
 
-.card__body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: clamp(1.25rem, 2.5vw, 2.25rem);
-  min-width: 0;
-}
-
-.card__org {
-  font-family: var(--font-mono);
-  font-size: var(--fs-label);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0;
-}
-
-.card__title {
-  font-size: clamp(1.375rem, 2vw, 1.75rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-}
-a.card:hover .card__title { color: var(--accent); }
-
-.card__roles {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-faint);
-}
-
-.card__summary {
-  font-size: var(--fs-small);
-  color: var(--ink-soft);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.card__more {
-  margin-top: 0.625rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.card--static { cursor: default; }
-
 /* No artwork yet: one full-width text column with an accent rule. */
 .card--text {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'body';
   border-left: 3px solid var(--accent);
 }
 .card--text .card__body { padding-block: clamp(1.5rem, 3vw, 2.25rem); }
 .card--text .card__summary { max-width: 62ch; }
 
-.card__flag {
-  font-family: var(--font-mono);
-  font-size: var(--fs-label);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: 0;
-}
-
-/* Stack image over text on narrow screens. */
-@media (max-width: 720px) {
-  .card { grid-template-columns: 1fr; }
+/*
+   Tablet and below: two columns leave both the text and the artwork too
+   narrow, so the card stacks — artwork on top, information underneath, both
+   at full width.
+*/
+@media (max-width: 900px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'media'
+      'body';
+  }
   .card__media {
-    border-right: 0;
+    border-left: 0;
     border-bottom: 1px solid var(--line);
   }
+  .card--feature .card__title { font-size: clamp(1.625rem, 4vw, 2.125rem); }
+  .card--text { grid-template-areas: 'body'; }
 }
 
 /* -------------------------------------------------------- 10. project page */
@@ -724,7 +1035,7 @@ a.card:hover .card__title { color: var(--accent); }
   top: 0.72em;
   width: 0.5rem;
   height: 1px;
-  background: var(--accent);
+  background: var(--color-border-strong);
 }
 
 @media (min-width: 720px) {
@@ -760,6 +1071,115 @@ a.card:hover .card__title { color: var(--accent); }
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
+
+/* --------------------------------------------------- project highlights */
+/*
+   Awards, ratings and milestones — the same component on a card and in the
+   Results section of a project page, so the data lives in one place. Flat by
+   design: a label, a small lime marker per row, and nothing else. No badges,
+   no boxes, no borders inside borders.
+*/
+.highlights {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.highlights__label {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.highlights__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: clamp(1rem, 2vw, 1.75rem);
+  row-gap: 0.4rem;
+}
+
+/*
+   Two columns once the information column is genuinely wide enough for two
+   readable ones — and one column below that, at any screen size. The query is
+   against the column itself, so it stays right whether the card is side by
+   side or stacked, and there is no breakpoint to keep in sync with the card.
+*/
+@container card-info (min-width: 30rem) {
+  .highlights--compact .highlights__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* A project with one highlight gets a row, not half a row. */
+  .highlights--compact .highlight:only-child { grid-column: 1 / -1; }
+}
+
+.highlight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-text);
+}
+
+/* Small lime marker, drawn in CSS so there is no icon font to load. */
+.highlight::before {
+  content: '';
+  flex: none;
+  width: 0.375rem;
+  height: 0.375rem;
+  background: var(--color-accent);
+  transform: translateY(-0.1em);
+}
+
+/* An achievement reads as one phrase: never break a word across lines, and
+   never strand a single word on a line of its own. */
+.highlight__text {
+  /* Takes the rest of the row rather than its own natural width, so it stays
+     beside its marker instead of wrapping under it. */
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.highlight a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.highlight a:hover { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+/* Detail page only: a quiet caption at the end of the row, against the rule. */
+.highlight__cat {
+  flex: none;
+  padding-left: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text-faint);
+}
+
+/* Detail-page variant: one column, roomier rows, a rule between them. */
+.highlights--page { margin-top: 0; }
+.highlights--page .highlights__list {
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0;
+}
+.highlights--page .highlight {
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+.highlights--page .highlight:first-child { border-top: 1px solid var(--color-border); }
 
 /* outcomes */
 .outcomes li {
@@ -851,7 +1271,7 @@ a.card:hover .card__title { color: var(--accent); }
   height: 4.25rem;
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  color: var(--color-on-accent);
   padding-left: 3px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
   transition: background-color 0.18s ease, transform 0.18s ease;
@@ -1031,9 +1451,91 @@ a.card:hover .card__title { color: var(--accent); }
   color: var(--ink-soft);
 }
 
+/* One compact line of hobbies under the professional interests list. */
+.about-personal {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  padding-top: clamp(1rem, 2vw, 1.25rem);
+  border-top: 1px solid var(--color-border);
+}
+.about-personal p {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------- 11b. publications */
+.pubs__group {
+  display: grid;
+  grid-template-columns: minmax(0, 6rem) minmax(0, 1fr);
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--color-border);
+}
+.pubs__group:first-of-type { border-top: 0; padding-top: 0; }
+
+.pubs__year {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--color-text-faint);
+  padding-top: 0.35rem;
+}
+
+.pubs__list { display: grid; gap: clamp(1.5rem, 3vw, 2rem); }
+
+.pub__title {
+  /* Long academic titles wrap freely — nothing here truncates them. */
+  font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+  margin-bottom: 0.4rem;
+}
+.pub__title a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.pub__title a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.pub__authors,
+.pub__venue {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.pub__venue { color: var(--color-text-faint); }
+
+.pub__link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-accent);
+  border-bottom: 1px solid transparent;
+}
+.pub__link:hover { border-bottom-color: currentColor; }
+
+@media (max-width: 640px) {
+  /* Year becomes a heading above its papers instead of a side column. */
+  .pubs__group { grid-template-columns: 1fr; gap: 0.875rem; }
+  .pubs__year { padding-top: 0; }
+}
+
 /* ------------------------------------------------------------ 12. contact */
 .contact {
-  background: var(--ink-deep);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
   color: var(--on-dark);
   padding-block: clamp(3.5rem, 8vw, 6rem);
   margin-top: var(--section-gap);
@@ -1067,7 +1569,7 @@ a.card:hover .card__title { color: var(--accent); }
   margin-top: 2rem;
 }
 .contact__links .btn {
-  border-color: rgba(244, 242, 237, 0.28);
+  border-color: var(--color-border-strong);
   color: var(--on-dark);
 }
 .contact__links .btn:hover {
@@ -1079,7 +1581,7 @@ a.card:hover .card__title { color: var(--accent); }
 .site-footer {
   background: var(--ink-deep);
   color: var(--on-dark-soft);
-  border-top: 1px solid rgba(244, 242, 237, 0.12);
+  border-top: 1px solid var(--color-hairline);
   padding-block: 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;

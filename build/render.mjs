@@ -3,6 +3,7 @@
  * no runtime JavaScript shipped to the browser.
  */
 import { esc, escUrl, join, list, pad } from './lib/html.mjs';
+import { abbreviateThousands } from './lib/format.mjs';
 
 /* ------------------------------------------------------------------ pieces */
 
@@ -137,7 +138,12 @@ function contact(profile, base) {
   return `<section class="contact" id="contact">
   <div class="wrap">
     <p class="label">Contact</p>
-    <h2 class="contact__title">${esc(profile.contactHeadline || `Get in touch with ${profile.name}.`)}</h2>
+    <h2 class="contact__title">${(Array.isArray(profile.contactHeadline)
+      ? profile.contactHeadline
+      : [profile.contactHeadline || `Get in touch with ${profile.name}.`]
+    )
+      .map(esc)
+      .join('<br>')}</h2>
     <a class="contact__email" href="mailto:${esc(profile.email)}">${esc(profile.email)}</a>
     <div class="contact__links">
 ${list(links, (l) => `      <a class="btn" href="${escUrl(l.href)}"${/^https?:/i.test(l.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(l.label)}</a>`)}
@@ -174,7 +180,7 @@ export function layout({ profile, base, current, title, description, path, main,
   <meta property="og:url" content="${escUrl(canonical)}">
   ${og ? `<meta property="og:image" content="${escUrl(`${profile.siteUrl.replace(/\/$/, '')}/${og}`)}">` : ''}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f4f2ed">${fontLinks}
+  <meta name="theme-color" content="#101114">${fontLinks}
   <link rel="stylesheet" href="${escUrl(base + 'assets/css/site.css')}">
 </head>
 <body${bodyClass ? ` class="${esc(bodyClass)}"` : ''}>
@@ -186,6 +192,7 @@ ${main}
 ${contact(profile, base)}
 ${footer(profile)}
 ${needsVideoScript(main) ? VIDEO_SCRIPT : ''}
+${main.includes('data-cine') ? `<script src="${escUrl(base + 'assets/js/hero.js')}" defer></script>` : ''}
 </body>
 </html>
 `;
@@ -193,53 +200,124 @@ ${needsVideoScript(main) ? VIDEO_SCRIPT : ''}
 
 /* ------------------------------------------------------------------- cards */
 
+/**
+ * Project highlights — awards, ratings and milestones from the project's
+ * `highlights` array. One component, used both on the listing cards and as the
+ * Results section of the detail page, so the data lives in exactly one place.
+ * Renders nothing at all when a project has no highlights.
+ *
+ * Large figures are abbreviated on the way out ("2,000+" -> "2k+"). The
+ * content files keep the real number; only this rendering is shortened.
+ *
+ * `compact` is the card variant: a label instead of a surrounding heading, no
+ * category captions, and — importantly — no links. A card is itself one big
+ * anchor, and an <a> inside an <a> is invalid HTML: the parser closes the card
+ * early and everything after the nested link spills out of it.
+ */
+function highlights(project, { compact = false } = {}) {
+  const items = project.highlights || [];
+  if (!items.length) return '';
+
+  const entry = (item) => {
+    const text = esc(abbreviateThousands(item.text));
+    const body =
+      item.url && !compact
+        ? `<a href="${escUrl(item.url)}" target="_blank" rel="noopener noreferrer">${text}</a>`
+        : text;
+    const category = !compact && item.category ? `<span class="highlight__cat">${esc(item.category)}</span>` : '';
+    return `        <li class="highlight"><span class="highlight__text">${body}</span>${category}</li>`;
+  };
+
+  const variant = compact ? ' highlights--compact' : ' highlights--page';
+  // On the detail page the surrounding "Results" heading already labels these.
+  const heading = compact ? '        <p class="highlights__label">Project highlights</p>\n' : '';
+
+  return `      <div class="highlights${variant}">
+${heading}        <ul class="highlights__list">
+${items.map(entry).join('\n')}
+        </ul>
+      </div>`;
+}
+
 function roleLine(project) {
   return [project.roles?.[0], project.meta?.engine, project.meta?.platform].filter(Boolean).join(' · ');
 }
 
 /**
- * Horizontal project card: artwork left, information right.
- * Uses the landscape cover art (falling back to the portrait key art) so the
- * image sits in a landscape frame without being cropped.
+ * Artwork column for a card.
+ *
+ * The artwork sits on a plate of its own with a fixed 16:9 aspect ratio, so
+ * every card's media reads at the same shape however tall the card grows.
+ * Artwork squarer than 3:2 — box art, portrait key art — would be left
+ * floating in the middle of that plate, so it gets a 4:3 plate instead.
+ *
+ * The image itself is fitted, never stretched: `contain` by default, which
+ * never crops a logo, and `cover` only where a project has opted in because
+ * its artwork can safely lose a little from the edges.
  */
-export function card(project, base) {
+function mediaClass(media) {
+  const ratio = media?.width && media?.height ? media.width / media.height : null;
+  return [
+    'card__media',
+    media?.fit === 'cover' ? 'card__media--cover' : '',
+    ratio !== null && ratio < 1.5 ? 'card__media--upright' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+
+/**
+ * The project card — the single layout used by every project listing on the
+ * site: Featured Projects and More projects on the homepage, and each section
+ * of the Work page.
+ *
+ * Two columns on a wide screen: the information at 55% on the left, the
+ * artwork at 45% on the right. Both columns grow with their content, so
+ * nothing is ever clipped. `feature: true` only scales the type up — the
+ * layout, the spacing and the order of the information are the same
+ * everywhere.
+ */
+export function card(project, index, base, { feature = false } = {}) {
   const media = project.cardImage || project.hero || project.thumbnail;
   // A project with no artwork yet gets a clean text-only card rather than an
   // empty image frame.
   const mediaBlock = media?.src
-    ? `  <div class="card__media${media.fit === 'cover' ? ' card__media--cover' : ''}">
-    ${image(media, base, { capWidth: media.fit !== 'cover' })}
-    ${project.badge ? `<span class="card__badge">${esc(project.badge)}</span>` : ''}
+    ? `  <div class="${mediaClass(media)}">
+    <div class="card__plate">
+      ${image(media, base, { lazy: !feature || index > 0 })}
+      ${project.badge ? `<span class="card__badge">${esc(project.badge)}</span>` : ''}
+    </div>
   </div>`
     : '';
-  const inner = `${mediaBlock}
-  <div class="card__body">
+
+  const studio = project.org || project.meta?.studio || '';
+  const summary = feature
+    ? project.subtitle || project.summary || ''
+    : project.summary || project.subtitle || '';
+
+  const inner = `  <div class="card__body">
+    <p class="card__eyebrow"><span class="card__index">${pad(index + 1)}</span>${
+      studio ? ` <span class="card__org">${esc(studio)}</span>` : ''
+    }</p>
     ${!media?.src && project.badge ? `<p class="card__flag">${esc(project.badge)}</p>` : ''}
-    ${project.org ? `<p class="card__org">${esc(project.org)}</p>` : ''}
     <h3 class="card__title">${esc(project.title)}</h3>
-    <p class="card__roles">${esc([...(project.roles || []), ...(project.tags || [])].join(' · '))}</p>
-    <p class="card__summary">${esc(project.summary || project.subtitle || '')}</p>
-    ${project.hasPage === false ? '' : '<span class="card__more">View project →</span>'}
-  </div>`;
-  const classes = `card${media?.src ? '' : ' card--text'}`;
+    <p class="card__roles">${esc(roleLine(project) || (project.tags || []).join(' · '))}</p>
+    <p class="card__summary">${esc(summary)}</p>
+${highlights(project, { compact: true })}
+    ${
+      project.hasPage === false
+        ? ''
+        : '<span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>'
+    }
+  </div>
+${mediaBlock}`;
+
+  const classes = ['card', feature ? 'card--feature' : '', media?.src ? '' : 'card--text']
+    .filter(Boolean)
+    .join(' ');
   return project.hasPage === false
     ? `<article class="${classes} card--static">\n${inner}\n</article>`
     : `<a class="${classes}" href="${escUrl(base + project.url)}">\n${inner}\n</a>`;
-}
-
-function feature(project, index, base) {
-  return `<article class="feature">
-  <a class="feature__media" href="${escUrl(base + project.url)}" tabindex="-1" aria-hidden="true">
-    ${image(project.hero || project.thumbnail, base, { lazy: index > 0 })}
-  </a>
-  <div class="feature__body">
-    <span class="feature__index">${pad(index + 1)} — ${esc(project.org || project.meta?.studio || 'Project')}</span>
-    <h3 class="feature__title"><a href="${escUrl(base + project.url)}">${esc(project.title)}</a></h3>
-    <p class="feature__roles">${esc(roleLine(project))}</p>
-    <p class="feature__summary">${esc(project.subtitle || project.summary || '')}</p>
-    <span class="arrow-link">View project <span aria-hidden="true">→</span></span>
-  </div>
-</article>`;
 }
 
 /* ------------------------------------------------------ about me + credits */
@@ -319,6 +397,79 @@ ${list(awards, awardItem)}
     </div>`;
 }
 
+/* ----------------------------------------------------- cinematic hero */
+
+/**
+ * Full-viewport opening sequence for the homepage.
+ *
+ * The name is real, selectable text, split into masked words at build time so
+ * the entrance animation is pure CSS — it runs (and the hero reads correctly)
+ * with JavaScript disabled. `assets/js/hero.js` only adds the pointer parallax
+ * and the scroll hand-off, and does nothing when reduced motion is requested.
+ */
+function cinematicHero(profile, base, scrollTarget) {
+  // Two stacked lines: given name, then the rest.
+  const parts = profile.name.trim().split(/\s+/);
+  const lines = parts.length > 1 ? [parts[0], parts.slice(1).join(' ')] : parts;
+
+  // Each line animates from behind its own mask, one after the other.
+  const nameLines = lines
+    .map(
+      (line, i) =>
+        `      <span class="cine__line"><span class="cine__reveal" style="--i:${i}">${esc(line)}</span></span>`
+    )
+    .join('\n');
+
+  const marquee = (profile.heroMarquee || []).length
+    ? profile.heroMarquee
+    : ['Gameplay Design', 'Level Design', 'Interactive Experiences'];
+  // Every item carries its own trailing separator, so the two halves are
+  // identical in width and the -50% loop has no visible seam.
+  const strip = [...marquee, ...marquee]
+    .map((item) => `<span>${esc(item)}</span><i aria-hidden="true">✳</i>`)
+    .join('');
+
+  // The loop travels half the track, so its width sets the perceived speed.
+  // Scaling the duration by the text length keeps that speed constant however
+  // many keywords are listed.
+  const marqueeSeconds = Math.max(20, Math.round(marquee.join('').length * 0.7));
+
+  return `<section class="cine" data-cine>
+  ${
+    profile.heroBackdrop?.src
+      ? `<div class="cine__backdrop" aria-hidden="true">${image(profile.heroBackdrop, base, {
+          lazy: false,
+        })}</div>`
+      : ''
+  }
+  <div class="cine__stage">
+    <div class="wrap">
+      <h1 class="cine__name">
+${nameLines}
+      </h1>
+      <p class="cine__role"><span class="cine__reveal" style="--i:2">${esc(profile.title)}</span></p>
+      <p class="cine__say">${esc(profile.heroLine || profile.intro)}</p>
+      <div class="cine__actions">
+        <a class="cine-btn cine-btn--primary" href="${escUrl(base + 'projects.html')}">View work</a>
+        <a class="cine-btn" href="${escUrl(base + 'about.html')}">About</a>
+        <a class="cine-btn" href="#contact">Contact</a>
+        ${
+          profile.resumeHref
+            ? `<a class="cine-btn" href="${escUrl(base + profile.resumeHref)}" target="_blank" rel="noopener">Résumé</a>`
+            : ''
+        }
+      </div>
+    </div>
+  </div>
+  <div class="cine__foot">
+    <div class="wrap cine__foot-inner">
+      <a class="cine__scroll" href="#${esc(scrollTarget)}"><span>Scroll</span><i aria-hidden="true"></i></a>
+      <div class="cine__marquee" aria-hidden="true"><div class="cine__track" style="--marquee-duration:${marqueeSeconds}s">${strip}</div></div>
+    </div>
+  </div>
+</section>`;
+}
+
 /* -------------------------------------------------------------------- home */
 
 export function homePage(ctx) {
@@ -328,23 +479,7 @@ export function homePage(ctx) {
   const more = projects.filter((p) => !featuredIds.has(p.slug));
 
   const main = join([
-    `<section class="hero">
-  <div class="wrap hero__grid">
-    <div>
-      <span class="hero__title">${esc(profile.title)}</span>
-      <h1 class="hero__name">${esc(profile.name)}</h1>
-      <p class="hero__intro">${esc(profile.intro)}</p>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="${escUrl(base + 'projects.html')}">View work</a>
-        ${profile.resumeHref ? `<a class="btn" href="${escUrl(base + profile.resumeHref)}" target="_blank" rel="noopener">Résumé</a>` : ''}
-        <a class="btn" href="#contact">Get in touch</a>
-      </div>
-    </div>
-    <ul class="hero__facts">
-${list(profile.disciplines, (d) => `      <li>${esc(d)}</li>`)}
-    </ul>
-  </div>
-</section>`,
+    cinematicHero(profile, base, featured.length ? 'featured-heading' : 'more-heading'),
 
     featured.length &&
       `<section class="section" aria-labelledby="featured-heading">
@@ -353,7 +488,9 @@ ${list(profile.disciplines, (d) => `      <li>${esc(d)}</li>`)}
       <h2 class="section__title" id="featured-heading">Featured Projects</h2>
       <p class="section__note">${featured.length} of ${projects.length} projects</p>
     </div>
-${list(featured, (p, i) => feature(p, i, base))}
+    <div class="card-grid">
+${list(featured, (p, i) => card(p, i, base, { feature: true }))}
+    </div>
   </div>
 </section>`,
 
@@ -365,7 +502,7 @@ ${list(featured, (p, i) => feature(p, i, base))}
       <a class="arrow-link" href="${escUrl(base + 'projects.html')}">All work <span aria-hidden="true">→</span></a>
     </div>
     <div class="card-grid">
-${list(more, (p) => card(p, base))}
+${list(more, (p, i) => card(p, i, base))}
     </div>
   </div>
 </section>`,
@@ -417,7 +554,7 @@ export function workPage(ctx) {
       <p class="section__note">${items.length} project${items.length === 1 ? '' : 's'}</p>
     </div>
     <div class="card-grid">
-${list(items, (p) => card(p, base))}
+${list(items, (p, i) => card(p, i, base))}
     </div>
   </div>
 </section>`
@@ -436,6 +573,69 @@ ${list(items, (p) => card(p, base))}
     path: 'projects.html',
     main,
   });
+}
+
+/**
+ * Academic bibliography, grouped by year with the newest year first. A paper
+ * links from its title only when it has a DOI — no entry ever renders a dead
+ * button. Nothing here is hardcoded: it all comes from `profile.publications`.
+ */
+function publications(profile) {
+  const papers = profile.publications || [];
+  if (!papers.length) return '';
+
+  // Group by year, keeping each year's entries in the order they are listed.
+  const byYear = new Map();
+  for (const paper of papers) {
+    const year = String(paper.year || '');
+    if (!byYear.has(year)) byYear.set(year, []);
+    byYear.get(year).push(paper);
+  }
+  const years = [...byYear.keys()].sort((a, b) => b.localeCompare(a));
+
+  const entry = (paper) => {
+    const title = esc(paper.title);
+    const meta = [paper.venue, paper.details].filter(Boolean).map(esc).join(' · ');
+    return `        <li class="pub">
+          <h4 class="pub__title">${
+            paper.doi
+              ? `<a href="${escUrl(paper.doi)}" target="_blank" rel="noopener noreferrer">${title}</a>`
+              : title
+          }</h4>
+          ${paper.authors ? `<p class="pub__authors">${esc(paper.authors)}</p>` : ''}
+          ${meta ? `<p class="pub__venue">${meta}</p>` : ''}
+          ${
+            paper.doi
+              ? `<a class="pub__link" href="${escUrl(paper.doi)}" target="_blank" rel="noopener noreferrer" aria-label="View publication: ${esc(
+                  paper.title
+                )}">View publication <span aria-hidden="true">↗</span></a>`
+              : ''
+          }
+        </li>`;
+  };
+
+  return `
+<section class="section" aria-labelledby="publications-heading">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" id="publications-heading">Publications</h2>
+      <p class="section__note">${papers.length} peer-reviewed papers</p>
+    </div>
+${years
+  .map(
+    (year) => `    <div class="pubs__group">
+      <h3 class="pubs__year">${esc(year)}</h3>
+      <ul class="pubs__list">
+${byYear
+  .get(year)
+  .map(entry)
+  .join('\n')}
+      </ul>
+    </div>`
+  )
+  .join('\n')}
+  </div>
+</section>`;
 }
 
 /* ------------------------------------------------------------------- about */
@@ -467,6 +667,14 @@ ${list(profile.about, (p) => `        <p>${esc(p)}</p>`)}
         <ul class="def-list def-list--tight">
 ${list(profile.interests, (i) => `          <li><strong>${esc(i.label)}</strong><span>${esc(i.detail)}</span></li>`)}
         </ul>
+        ${
+          profile.personalInterests?.length
+            ? `<div class="about-personal">
+          <h3 class="label">Personal Interests</h3>
+          <p>${profile.personalInterests.map(esc).join(' · ')}</p>
+        </div>`
+            : ''
+        }
       </div>
     </div>
     <div class="about-skills">
@@ -486,7 +694,8 @@ ${credentials(profile, base)}
 ${list(profile.experience, (e) => `      <li><strong>${esc(e.org)}</strong><span>${esc(e.role)}</span></li>`)}
     </ul>
   </div>
-</section>`;
+</section>
+${publications(profile)}`;
 
   return layout({
     profile,
@@ -621,14 +830,20 @@ ${list(project.gallery.items, (m) => figure(m, base))}
   </div>
 </section>`,
 
-    project.outcomes?.length &&
+    // Results comes from `highlights`; `outcomes` is the older field and is
+    // still honoured for any project that uses it instead.
+    (project.highlights?.length || project.outcomes?.length) &&
       `<section class="wrap section" style="padding-block:0 clamp(2.5rem,5vw,4rem)">
   <div class="section__head">
     <h2 class="section__title">Results</h2>
   </div>
-  <ul class="outcomes">
+${
+  project.highlights?.length
+    ? highlights(project)
+    : `  <ul class="outcomes">
 ${list(project.outcomes, (o) => `    <li>${esc(o)}</li>`)}
-  </ul>
+  </ul>`
+}
 </section>`,
 
     project.credits &&
