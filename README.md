@@ -304,6 +304,91 @@ media: [
 ],
 ```
 
+### 6b. Case-study pieces: loop diagrams, sub-sections and design reasoning
+
+Three optional extras any section can carry. They are drawn entirely in CSS —
+there is no diagram image to keep in sync with the writing — and a section that
+leaves them out renders exactly as before. THANG! uses all three; see
+`content/projects/thang.mjs`.
+
+**A gameplay-loop diagram.** A numbered chain of stages that closes back on
+itself. It runs across the page on a wide screen and stacks on a phone.
+
+```js
+{
+  title: 'Core Gameplay Loop',
+  diagram: {
+    steps: [
+      { title: 'Freeze', body: 'What happens at this stage.' },
+      { title: 'Carry',  body: '…' },
+    ],
+    loopLabel: 'Text for the bar that closes the loop back to stage one.',
+    note: 'A paragraph under the diagram explaining the design intention.',
+  },
+}
+```
+
+**Lettered sub-sections.** For a section covering two or three related systems
+without splitting them into separate blocks. Each part takes `body`, `items`
+and `note`. Two or more parts are lettered A, B, C; a single part is not.
+
+```js
+parts: [
+  { title: 'Freeze & Thaw',   body: ['…'], items: ['…'], note: 'Still in tuning.' },
+  { title: 'Oven & Scoring',  body: ['…'] },
+],
+```
+
+**Design-reasoning frames.** One small card per decision, each with the same
+labelled rows. The labels come from the content file, so any repeated structure
+works — "objective → decision → intended behaviour" is just one use.
+
+```js
+frames: [
+  {
+    title: 'Constant encounters',
+    rows: [
+      { label: 'Design objective', text: '…' },
+      { label: 'Design decision', text: '…' },
+      { label: 'Intended player behaviour', text: '…' },
+    ],
+  },
+],
+```
+
+Two more section keys go with these:
+
+```js
+mediaFirst: true,   // lead the block with its images and put the text under them
+footnote: '…',      // a caveat printed after the diagram, parts and frames
+                    // (`note` stays with the paragraphs at the top instead)
+```
+
+### 6c. A block above the main write-up
+
+`showcase` takes the same shape as `sections` but renders straight after the
+overview, with no index numbers and no "My contributions" heading over it —
+for a prototype video or a short statement that belongs high on the page.
+
+```js
+showcase: [
+  {
+    title: 'Prototype Gameplay',
+    body: ['Footage from the current build. Nothing here is final.'],
+    media: [{ youtube: 'https://youtu.be/ID', caption: 'Prototype footage.' }],
+    links: [{ label: 'Watch on YouTube', href: 'https://youtu.be/ID' }],
+  },
+],
+```
+
+You can also rename the heading over the main `sections` list, which defaults
+to "My contributions":
+
+```js
+sectionsTitle: 'Design case study',
+sectionsNote: 'Creative Director & Lead Designer',
+```
+
 ### 7. Reorder projects
 
 Change the `order` number in each project file. Lower numbers come first.
@@ -311,6 +396,10 @@ Change the `order` number in each project file. Lower numbers come first.
 ```js
 order: 1,   // this one appears first
 ```
+
+Decimals work, so a project can be slotted between two others without
+renumbering anything else — THANG! uses `order: 1.5` to sit directly after
+Overdawn (`order: 1`).
 
 ### 8. Mark a project as featured
 

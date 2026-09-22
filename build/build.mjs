@@ -180,6 +180,7 @@ function resolveProjectMedia(project) {
     }));
   out.sections = resolveBlocks(project.sections, '');
   out.process = resolveBlocks(project.process, 'design process › ');
+  out.showcase = resolveBlocks(project.showcase, 'showcase › ');
 
   if (project.gallery?.items?.length) {
     out.gallery = {

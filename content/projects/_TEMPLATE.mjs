@@ -54,6 +54,8 @@ export default {
     genre: 'Action',
     team: '12 people',
     period: 'Jan 2025 – Present',
+    release: 'March 2027 (planned)',
+    status: 'In development',
   },
 
   // ------------------------------------------------------------------- media
@@ -121,8 +123,55 @@ export default {
       ],
       links: [{ label: 'Design Doc', href: 'https://...' }],
       note: 'Optional italic note, e.g. "Work in progress".',
+
+      // ------------------------------------------------ case-study extras
+      // All three below are optional, drawn in CSS, and omitted entirely when
+      // you leave them out. See README §6b, or content/projects/thang.mjs for
+      // a worked example of each.
+
+      // A numbered loop diagram that closes back on itself.
+      // diagram: {
+      //   steps: [{ title: 'Freeze', body: 'What happens at this stage.' }],
+      //   loopLabel: 'The bar that closes the loop back to stage one.',
+      //   note: 'A paragraph under the diagram.',
+      // },
+
+      // Lettered sub-sections inside this one block (A, B, C — a single part
+      // is not lettered). Each takes body, items and note.
+      // parts: [{ title: 'Freeze & Thaw', body: ['...'], items: ['...'] }],
+
+      // One small card per design decision, with the same labelled rows.
+      // frames: [
+      //   {
+      //     title: 'Constant encounters',
+      //     rows: [
+      //       { label: 'Design objective', text: '...' },
+      //       { label: 'Design decision', text: '...' },
+      //       { label: 'Intended player behaviour', text: '...' },
+      //     ],
+      //   },
+      // ],
+
+      // mediaFirst: true,   // lead with the images, put the text under them
+      // footnote: '...',    // caveat printed after the diagram/parts/frames
     },
   ],
+
+  // -------------------------------------------------- above the write-up
+  // Same shape as `sections`, but rendered straight after the overview with
+  // no index numbers and no heading over it — for a prototype video or a
+  // short statement that belongs high on the page.
+  // showcase: [
+  //   {
+  //     title: 'Prototype Gameplay',
+  //     body: ['Footage from the current build. Nothing here is final.'],
+  //     media: [{ youtube: 'https://youtu.be/ID', caption: 'Prototype footage.' }],
+  //   },
+  // ],
+
+  // Rename the heading over `sections` (defaults to "My contributions").
+  // sectionsTitle: 'Design case study',
+  // sectionsNote: 'Creative Director & Lead Designer',
 
   // ---------------------------------------------------------- design process
   // Optional. Same shape as `sections` above, rendered under a "Design process"

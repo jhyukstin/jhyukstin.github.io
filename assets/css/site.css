@@ -1085,6 +1085,224 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
+/* ------------------------------------------------ 10a. case-study blocks */
+/*
+   Three optional pieces a project block can carry, all of them content-driven
+   and all of them drawn in CSS so there is no diagram image to keep in sync
+   with the writing:
+
+     diagram — a numbered chain of stages that closes back on itself
+     parts   — lettered sub-sections inside one block
+     frames  — one small card per design decision, with labelled rows
+
+   They live in `.block__wide`, which gets the full column instead of the
+   reading measure `.block__body` is held to.
+*/
+
+.block__head--plain { grid-template-columns: minmax(0, 1fr); }
+.block__head--plain .block__subtitle { grid-column: 1; }
+
+/* `mediaFirst` puts the artwork above the writing, so the text needs the
+   space the media grid would otherwise have given it. */
+.block__media + .block__body { margin-top: clamp(1.5rem, 3vw, 2.25rem); }
+
+/* The caveat that closes a block, after its diagram, sub-sections or frames. */
+.block__footnote {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  max-width: var(--measure);
+}
+
+/* Blocks above the main write-up carry no index column, so nothing is
+   indented to make room for one — see the 720px rule at the end of this
+   group. Their top rule is what separates them from the overview. */
+
+/* ------------------------------------------------------------ loop diagram */
+.loop { margin-top: 1.75rem; }
+
+.loop__steps {
+  display: grid;
+  gap: 2.75rem 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.loop__step {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.375rem;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+}
+
+/* The connector between two stages: down the page when stacked, across the
+   gap once the chain runs horizontally. */
+.loop__step::after {
+  content: '\2193';
+  position: absolute;
+  left: 50%;
+  bottom: -2.1rem;
+  transform: translateX(-50%);
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--accent-text);
+}
+.loop__step:last-child::after { content: none; }
+
+.loop__index {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+
+.loop__title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.loop__text {
+  margin-top: 0.5rem;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+/* The bar that closes the loop back to the first stage. */
+.loop__return {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+.loop__return span::before {
+  content: '\21BA';
+  margin-right: 0.5rem;
+  color: var(--accent-text);
+}
+
+.loop__note {
+  margin-top: 1.25rem;
+  max-width: var(--measure);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+/* The chain only turns horizontal once each stage still has room to read.
+   Below this it stays stacked, with the arrows pointing down the page.
+   `grid-auto-flow: column` keeps it on one line for any number of stages, so
+   an arrow never ends up pointing at a wrapped row. */
+@media (min-width: 1000px) {
+  .loop__steps {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0 2.25rem;
+  }
+  .loop__step::after {
+    content: '\2192';
+    left: auto;
+    right: -2.25rem;
+    bottom: auto;
+    top: 50%;
+    width: 2.25rem;
+    text-align: center;
+    transform: translateY(-50%);
+  }
+}
+
+/* -------------------------------------------------------- sub-sections */
+.parts {
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: 1.75rem;
+}
+
+.part {
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+}
+
+/* One step below `.block__title`, which is `--fs-h3`. */
+.part__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.part__mark {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-text);
+}
+
+.part__body {
+  display: grid;
+  gap: 0.875rem;
+  max-width: var(--measure);
+  margin-top: 0.875rem;
+}
+.part__body p { color: var(--ink-soft); }
+
+/* ---------------------------------------------------- reasoning frames */
+.frames {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin-top: 1.75rem;
+}
+
+.frame {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  padding: 1.375rem 1.25rem;
+}
+
+.frame__title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.875rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.frame__rows {
+  display: grid;
+  gap: 0.875rem;
+  margin: 0;
+}
+
+.frame__rows dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.frame__rows dd {
+  margin: 0.3rem 0 0;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+@media (min-width: 720px) {
+  .block__wide { margin-left: 4.5rem; }
+  .showcase .block__body,
+  .showcase .block__media,
+  .showcase .block__wide { margin-left: 0; }
+}
+
 /* --------------------------------------------------- project highlights */
 /*
    Awards, ratings and milestones — the same component on a card and in the

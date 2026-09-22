@@ -718,6 +718,7 @@ const SPEC_FIELDS = [
   ['genre', 'Genre'],
   ['team', 'Team size'],
   ['period', 'Timeline'],
+  ['release', 'Release'],
   ['status', 'Status'],
   ['format', 'Format'],
 ];
@@ -730,7 +731,88 @@ function specList(project) {
   return rows.length ? `<dl class="spec">\n${rows.join('\n')}\n  </dl>` : '';
 }
 
-function block(section, index, base) {
+/**
+ * Loop diagram — a numbered chain of stages with connectors drawn between
+ * them in CSS, so there is no image to keep in sync with the writing. The
+ * chain runs across the page on a wide screen and stacks on a phone.
+ *
+ *   diagram: {
+ *     steps: [{ title: 'Freeze', body: 'What happens at this stage.' }],
+ *     loopLabel: 'Text for the bar that closes the loop.',
+ *     note: 'Optional line under the diagram.',
+ *   }
+ */
+function loopDiagram(diagram) {
+  const steps = diagram?.steps || [];
+  if (!steps.length) return '';
+  const step = (s, i) => `        <li class="loop__step">
+          <span class="loop__index" aria-hidden="true">${pad(i + 1)}</span>
+          <h4 class="loop__title">${esc(s.title)}</h4>
+          ${s.body ? `<p class="loop__text">${esc(s.body)}</p>` : ''}
+        </li>`;
+
+  return `    <div class="loop">
+      <ol class="loop__steps">
+${steps.map(step).join('\n')}
+      </ol>
+      ${
+        diagram.loopLabel
+          ? `<p class="loop__return"><span>${esc(diagram.loopLabel)}</span></p>`
+          : ''
+      }
+      ${diagram.note ? `<p class="loop__note">${esc(diagram.note)}</p>` : ''}
+    </div>`;
+}
+
+/**
+ * Lettered sub-sections inside one block — for a section that covers two or
+ * three related systems without splitting them into separate blocks.
+ *
+ *   parts: [{ title: 'Freeze & Thaw', body: ['…'], items: ['…'], note: '…' }]
+ */
+function parts(items) {
+  if (!items?.length) return '';
+  // A single sub-section is just a continuation of the block, so it is not
+  // lettered — the A/B/C marks only earn their place in a set.
+  const marked = items.length > 1;
+  const part = (p, i) => `      <section class="part">
+        <h4 class="part__title">${
+          marked ? `<span class="part__mark" aria-hidden="true">${String.fromCharCode(65 + i)}</span>` : ''
+        }${esc(p.title)}</h4>
+        <div class="part__body">
+${join([
+  p.body?.length ? list(p.body, (t) => `          <p>${esc(t)}</p>`) : '',
+  p.items?.length
+    ? `          <ul class="bullets">\n${list(p.items, (t) => `            <li>${esc(t)}</li>`)}\n          </ul>`
+    : '',
+  p.note ? `          <p class="block__note">${esc(p.note)}</p>` : '',
+])}
+        </div>
+      </section>`;
+  return `    <div class="parts">\n${list(items, part)}\n    </div>`;
+}
+
+/**
+ * Reasoning frames — a small card per design decision, each one a fixed set of
+ * labelled rows. Written for the "objective → decision → intended behaviour"
+ * way of explaining a level, but the labels come from the content file, so any
+ * repeated structure works.
+ *
+ *   frames: [{ title: 'Constant encounters', rows: [{ label: 'Objective', text: '…' }] }]
+ */
+function frames(items) {
+  if (!items?.length) return '';
+  const row = (r) => `            <div><dt>${esc(r.label)}</dt><dd>${esc(r.text)}</dd></div>`;
+  const frame = (f) => `      <article class="frame">
+        ${f.title ? `<h4 class="frame__title">${esc(f.title)}</h4>` : ''}
+        <dl class="frame__rows">
+${list(f.rows, row)}
+        </dl>
+      </article>`;
+  return `    <div class="frames">\n${list(items, frame)}\n    </div>`;
+}
+
+function block(section, index, base, { numbered = true } = {}) {
   const body = join([
     section.body?.length ? list(section.body, (p) => `    <p>${esc(p)}</p>`) : '',
     section.items?.length
@@ -745,14 +827,36 @@ function block(section, index, base) {
       : '',
   ]);
 
+  // Diagrams, sub-sections and reasoning frames need the full column rather
+  // than the reading measure `block__body` is held to. `footnote` is the
+  // caveat that belongs after all of them — `note` sits with the text above.
+  const wide = join([
+    loopDiagram(section.diagram),
+    parts(section.parts),
+    frames(section.frames),
+    section.footnote ? `    <p class="block__note block__footnote">${esc(section.footnote)}</p>` : '',
+  ]);
+  const media = section.media?.length ? `<div class="block__media">${mediaGrid(section.media, base)}</div>` : '';
+  const wideBlock = wide ? `<div class="block__wide">\n${wide}\n  </div>` : '';
+  const bodyBlock = body ? `<div class="block__body">\n${body}\n  </div>` : '';
+
+  // `mediaFirst` leads the block with its artwork and puts the writing under
+  // it — for a section where the screenshot is the point and the text is the
+  // caption. The default is the other way round.
+  // The first part is indented by the template line below; the rest carry it
+  // themselves, so the emitted HTML keeps its two-space block indent.
+  const content = (section.mediaFirst ? [media, bodyBlock, wideBlock] : [bodyBlock, wideBlock, media])
+    .filter(Boolean)
+    .map((part, i) => (i === 0 ? part : `  ${part}`))
+    .join('\n');
+
   return `<section class="block">
-  <div class="block__head">
-    <span class="block__index" aria-hidden="true">${pad(index + 1)}</span>
+  <div class="block__head${numbered ? '' : ' block__head--plain'}">
+    ${numbered ? `<span class="block__index" aria-hidden="true">${pad(index + 1)}</span>` : ''}
     <h3 class="block__title">${esc(section.title)}</h3>
     ${section.subtitle ? `<p class="block__subtitle">${esc(section.subtitle)}</p>` : ''}
   </div>
-  ${body ? `<div class="block__body">\n${body}\n  </div>` : ''}
-  ${section.media?.length ? `<div class="block__media">${mediaGrid(section.media, base)}</div>` : ''}
+  ${content}
 </section>`;
 }
 
@@ -803,11 +907,21 @@ ${list(project.overview, (p) => `    <p>${esc(p)}</p>`)}
   </div>
 </section>`,
 
+    // Standalone blocks shown before the main write-up and without an umbrella
+    // heading — a prototype video, a short statement, anything that belongs
+    // high on the page. Same content shape as `sections`.
+    project.showcase?.length &&
+      `<section class="wrap showcase">
+${list(project.showcase, (s, i) => block(s, i, base, { numbered: false }))}
+</section>`,
+
     project.sections?.length &&
       `<section class="wrap" aria-labelledby="contrib-heading">
   <div class="section__head" style="margin-bottom:0">
-    <h2 class="section__title" id="contrib-heading">My contributions</h2>
-    <p class="section__note">${esc((project.roles || []).join(' · '))}</p>
+    <h2 class="section__title" id="contrib-heading">${esc(project.sectionsTitle || 'My contributions')}</h2>
+    <p class="section__note">${esc(
+      project.sectionsNote === undefined ? (project.roles || []).join(' · ') : project.sectionsNote
+    )}</p>
   </div>
 ${list(project.sections, (s, i) => block(s, i, base))}
 </section>`,
