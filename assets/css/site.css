@@ -725,6 +725,7 @@ a:hover > .arrow-link span,
 }
 
 .card {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
   grid-template-areas: 'body media';
@@ -736,7 +737,29 @@ a:hover > .arrow-link span,
   transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
-a.card:hover {
+/*
+   The whole card is clickable, but the anchor is the title: its ::after is
+   stretched over the card. The card itself is an <article>, so a real link
+   inside it — an award's source — is not trapped in a nested <a>.
+*/
+.card__link {
+  color: inherit;
+  text-decoration: none;
+}
+.card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Links inside the card sit above that overlay so they stay clickable. */
+.card__body a:not(.card__link) {
+  position: relative;
+  z-index: 2;
+}
+
+.card--link:hover {
   border-color: var(--line-strong);
   transform: translateY(-2px);
 }
@@ -789,7 +812,7 @@ a.card:hover {
   letter-spacing: -0.025em;
   transition: color 0.18s ease;
 }
-a.card:hover .card__title { color: var(--accent-text); }
+.card--link:hover .card__title { color: var(--accent-text); }
 
 .card__roles {
   margin: 0;
@@ -868,7 +891,7 @@ a.card:hover .card__title { color: var(--accent-text); }
 /* Opt in per project (fit: 'cover' in the content file) when the artwork can
    safely fill the frame — when nothing important sits against its edges. */
 .card__media--cover .card__plate img { object-fit: cover; }
-a.card:hover .card__plate img { transform: scale(1.03); }
+.card--link:hover .card__plate img { transform: scale(1.03); }
 
 .card__badge {
   position: absolute;

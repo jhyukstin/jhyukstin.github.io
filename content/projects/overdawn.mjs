@@ -120,8 +120,16 @@ export default {
 
   // Shown on the homepage card and as the Results section on this page.
   highlights: [
-    { text: 'GWB 2025 — Tencent Games Student Bronze', category: 'Award' },
-    { text: 'GDWC 2025 — Best Student Game Finalist', category: 'Award' },
+    {
+      text: 'GWB 2025 — Tencent Games Student Bronze',
+      category: 'Award',
+      url: 'https://x.com/TencentGames/status/1996077081797816443',
+    },
+    {
+      text: 'GDWC 2025 — Best Student Game Finalist',
+      category: 'Award',
+      url: 'https://thegdwc.com/games/b665386f-fdca-4ca3-aa1c-a46ac55c31b4',
+    },
     { text: 'SAGE — Design Runner-Up', category: 'Award' },
     {
       text: '1,500+ Steam Wishlists',

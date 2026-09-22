@@ -209,10 +209,10 @@ ${main.includes('data-cine') ? `<script src="${escUrl(base + 'assets/js/hero.js'
  * Large figures are abbreviated on the way out ("2,000+" -> "2k+"). The
  * content files keep the real number; only this rendering is shortened.
  *
- * `compact` is the card variant: a label instead of a surrounding heading, no
- * category captions, and — importantly — no links. A card is itself one big
- * anchor, and an <a> inside an <a> is invalid HTML: the parser closes the card
- * early and everything after the nested link spills out of it.
+ * `compact` is the card variant: a label instead of a surrounding heading and
+ * no category captions. Source links are rendered in both variants — the card
+ * carries its own link on the title rather than wrapping everything in one
+ * anchor (see `card` below), so a link here is not nested inside another.
  */
 function highlights(project, { compact = false } = {}) {
   const items = project.highlights || [];
@@ -220,10 +220,9 @@ function highlights(project, { compact = false } = {}) {
 
   const entry = (item) => {
     const text = esc(abbreviateThousands(item.text));
-    const body =
-      item.url && !compact
-        ? `<a href="${escUrl(item.url)}" target="_blank" rel="noopener noreferrer">${text}</a>`
-        : text;
+    const body = item.url
+      ? `<a href="${escUrl(item.url)}" target="_blank" rel="noopener noreferrer">${text}</a>`
+      : text;
     const category = !compact && item.category ? `<span class="highlight__cat">${esc(item.category)}</span>` : '';
     return `        <li class="highlight"><span class="highlight__text">${body}</span>${category}</li>`;
   };
@@ -276,9 +275,17 @@ function mediaClass(media) {
  * nothing is ever clipped. `feature: true` only scales the type up — the
  * layout, the spacing and the order of the information are the same
  * everywhere.
+ *
+ * The whole card is clickable, but the anchor is on the title and is stretched
+ * over the card in CSS rather than wrapped around it. That leaves the card's
+ * contents outside the link, so anything inside it that is genuinely a link of
+ * its own — an award's source, say — stays one. Wrapping the card in an <a>
+ * instead would make those nested anchors, which is invalid HTML: the parser
+ * closes the card early and the rest of it spills out.
  */
 export function card(project, index, base, { feature = false } = {}) {
   const media = project.cardImage || project.hero || project.thumbnail;
+  const linked = project.hasPage !== false;
   // A project with no artwork yet gets a clean text-only card rather than an
   // empty image frame.
   const mediaBlock = media?.src
@@ -300,24 +307,27 @@ export function card(project, index, base, { feature = false } = {}) {
       studio ? ` <span class="card__org">${esc(studio)}</span>` : ''
     }</p>
     ${!media?.src && project.badge ? `<p class="card__flag">${esc(project.badge)}</p>` : ''}
-    <h3 class="card__title">${esc(project.title)}</h3>
+    <h3 class="card__title">${
+      linked
+        ? `<a class="card__link" href="${escUrl(base + project.url)}">${esc(project.title)}</a>`
+        : esc(project.title)
+    }</h3>
     <p class="card__roles">${esc(roleLine(project) || (project.tags || []).join(' · '))}</p>
     <p class="card__summary">${esc(summary)}</p>
 ${highlights(project, { compact: true })}
-    ${
-      project.hasPage === false
-        ? ''
-        : '<span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>'
-    }
+    ${linked ? '<span class="arrow-link card__more">View project <span aria-hidden="true">→</span></span>' : ''}
   </div>
 ${mediaBlock}`;
 
-  const classes = ['card', feature ? 'card--feature' : '', media?.src ? '' : 'card--text']
+  const classes = [
+    'card',
+    feature ? 'card--feature' : '',
+    media?.src ? '' : 'card--text',
+    linked ? 'card--link' : 'card--static',
+  ]
     .filter(Boolean)
     .join(' ');
-  return project.hasPage === false
-    ? `<article class="${classes} card--static">\n${inner}\n</article>`
-    : `<a class="${classes}" href="${escUrl(base + project.url)}">\n${inner}\n</a>`;
+  return `<article class="${classes}">\n${inner}\n</article>`;
 }
 
 /* ------------------------------------------------------ about me + credits */
