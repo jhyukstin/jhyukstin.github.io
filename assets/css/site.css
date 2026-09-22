@@ -11,24 +11,36 @@
      These six semantic tokens are the whole palette. Everything else in
      this file is derived from them, so changing a value here restyles the
      entire site. */
-  --color-background: #101114;
-  --color-surface: #1b1d21;
+  --color-background: #141416;
+  --color-surface: #202023;
   --color-text: #f5f5f5;
   --color-text-muted: #a1a1aa;
-  --color-accent: #c7f36b;
-  --color-border: #34363b;
+  --color-accent: #c43d4b;
+  --color-border: #38383d;
 
   /* Derived: a well behind media, a brighter border for controls, an
      accent hover, ink for text sitting on the accent, and a scrim for
      labels that overlap artwork. */
-  --color-well: #16181c;
+  --color-well: #1a1a1c;
   /* Interactive borders (buttons, chips) need 3:1 against the background to
      meet WCAG 1.4.11, so this is lighter than the plain divider colour. */
-  --color-border-strong: #676a70;
-  --color-accent-hover: #d9ff8f;
-  --color-on-accent: #12140c;
-  --color-text-faint: #8a8e96;
-  --color-scrim: rgba(16, 17, 20, 0.82);
+  --color-border-strong: #6b6b71;
+  --color-accent-hover: #e05a65;
+  /*
+     The crimson is a fill colour, not a text colour: at 3.6:1 on the
+     background it clears WCAG 1.4.11 for markers, rules and borders but not
+     1.4.3 for words. Anything written in the accent uses this brighter tone
+     instead, which reaches 5.1:1 on the background and 4.5:1 on a card.
+     Keeping the two apart is what lets the deep crimson carry the buttons
+     and markers while red type stays readable.
+  */
+  --color-accent-text: #e05a65;
+  /* Labels sitting on a crimson fill: white clears 5.1:1 there. */
+  --color-on-accent: #ffffff;
+  --color-text-faint: #8b8b93;
+  --color-scrim: rgba(20, 20, 22, 0.82);
+  /* The softer half of the same scrim, for washing artwork back behind type. */
+  --color-scrim-soft: rgba(20, 20, 22, 0.55);
   --color-hairline: rgba(245, 245, 245, 0.14);
 
   /* ---------------------------------------------- component aliases ----
@@ -49,6 +61,7 @@
   --line-strong: var(--color-border-strong);
   --accent: var(--color-accent);
   --accent-deep: var(--color-accent-hover);
+  --accent-text: var(--color-accent-text);
 
   /* type */
   --font-sans: 'Archivo', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -116,7 +129,7 @@ hr {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 1px;
 }
@@ -242,7 +255,7 @@ hr {
 }
 
 .site-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
-.site-nav a[aria-current='page'] { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+.site-nav a[aria-current='page'] { color: var(--color-accent-text); border-bottom-color: var(--color-accent); }
 
 .site-nav a.nav-resume {
   border: 1px solid var(--line-strong);
@@ -284,9 +297,9 @@ hr {
 }
 
 .btn:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent-text);
 }
 
 .btn--primary {
@@ -301,7 +314,7 @@ hr {
 }
 
 .btn--ghost { border-color: transparent; padding-inline: 0; }
-.btn--ghost:hover { background: transparent; color: var(--accent); }
+.btn--ghost:hover { background: transparent; color: var(--accent-text); }
 
 .btn-row {
   display: flex;
@@ -318,7 +331,7 @@ hr {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--accent);
+  color: var(--accent-text);
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
 }
@@ -381,7 +394,7 @@ a:hover > .arrow-link span,
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 50% 35%, rgba(16, 17, 20, 0.55), var(--cine-bg) 78%);
+  background: radial-gradient(120% 90% at 50% 35%, var(--color-scrim-soft), var(--cine-bg) 78%);
 }
 
 .cine__stage {
@@ -428,7 +441,7 @@ a:hover > .arrow-link span,
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--cine-accent);
+  color: var(--color-accent-text);
 }
 
 .cine__say {
@@ -464,9 +477,9 @@ a:hover > .arrow-link span,
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 .cine-btn:hover {
-  background: var(--cine-ink);
-  border-color: var(--cine-ink);
-  color: var(--cine-bg);
+  background: transparent;
+  border-color: var(--cine-accent);
+  color: var(--color-accent-text);
 }
 .cine-btn--primary {
   background: var(--cine-accent);
@@ -479,7 +492,7 @@ a:hover > .arrow-link span,
   border-color: var(--color-accent-hover);
   color: var(--color-on-accent);
 }
-.cine :focus-visible { outline-color: var(--cine-accent); }
+.cine :focus-visible { outline-color: var(--color-accent-text); }
 
 /* -- foot: scroll cue + marquee ----------------------------------------- */
 .cine__foot {
@@ -539,7 +552,7 @@ a:hover > .arrow-link span,
   animation: cine-marquee var(--marquee-duration, 34s) linear infinite;
 }
 
-/* Small lime separator. The glyph is not in IBM Plex Mono, so symbol fonts
+/* Small crimson separator. The glyph is not in IBM Plex Mono, so symbol fonts
    lead the stack to stop it falling back to a missing-character box. */
 .cine__track i {
   font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', var(--font-mono), sans-serif;
@@ -556,7 +569,7 @@ a:hover > .arrow-link span,
   border-bottom-color: transparent;
 }
 .site-header--ghost .brand__name,
-.site-header--ghost .site-nav a[aria-current='page'] { color: var(--color-accent); }
+.site-header--ghost .site-nav a[aria-current='page'] { color: var(--color-accent-text); }
 .site-header--ghost .brand__role,
 .site-header--ghost .site-nav a { color: var(--color-text-muted); }
 .site-header--ghost .site-nav a:hover { color: var(--color-text); }
@@ -642,7 +655,7 @@ a:hover > .arrow-link span,
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 1.5rem;
 }
 
@@ -755,7 +768,7 @@ a.card:hover {
   text-transform: uppercase;
   color: var(--ink-faint);
 }
-.card__index { color: var(--accent); }
+.card__index { color: var(--accent-text); }
 .card__eyebrow .card__org::before { content: '—'; margin-right: 0.5rem; }
 
 .card__org { margin: 0; }
@@ -766,7 +779,7 @@ a.card:hover {
   font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .card__title {
@@ -776,7 +789,7 @@ a.card:hover {
   letter-spacing: -0.025em;
   transition: color 0.18s ease;
 }
-a.card:hover .card__title { color: var(--accent); }
+a.card:hover .card__title { color: var(--accent-text); }
 
 .card__roles {
   margin: 0;
@@ -911,7 +924,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   color: var(--ink-faint);
   text-decoration: none;
 }
-.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb a:hover { color: var(--accent-text); }
 
 .project-head {
   padding-block: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.25rem);
@@ -923,7 +936,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   font-size: var(--fs-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 1rem;
 }
 
@@ -1011,7 +1024,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   grid-column: 2;
   font-family: var(--font-mono);
   font-size: var(--fs-small);
-  color: var(--accent);
+  color: var(--accent-text);
   margin-top: 0.35rem;
 }
 
@@ -1076,7 +1089,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
 /*
    Awards, ratings and milestones — the same component on a card and in the
    Results section of a project page, so the data lives in one place. Flat by
-   design: a label, a small lime marker per row, and nothing else. No badges,
+   design: a label, a small crimson marker per row, and nothing else. No badges,
    no boxes, no borders inside borders.
 */
 .highlights {
@@ -1125,7 +1138,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   color: var(--color-text);
 }
 
-/* Small lime marker, drawn in CSS so there is no icon font to load. */
+/* Small crimson marker, drawn in CSS so there is no icon font to load. */
 .highlight::before {
   content: '';
   flex: none;
@@ -1152,7 +1165,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   border-bottom: 1px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-.highlight a:hover { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+.highlight a:hover { color: var(--color-accent-text); border-bottom-color: var(--color-accent); }
 
 /* Detail page only: a quiet caption at the end of the row, against the rule. */
 .highlight__cat {
@@ -1192,7 +1205,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
 }
 .outcomes li::before {
   content: '★';
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 0.875rem;
   line-height: 1.7;
 }
@@ -1216,7 +1229,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   font-size: 1.125rem;
   letter-spacing: -0.02em;
 }
-.pager a:hover strong { color: var(--accent); }
+.pager a:hover strong { color: var(--accent-text); }
 .pager__next { text-align: right; margin-left: auto; }
 
 /* --------------------------------------------------- 10b. video containers */
@@ -1289,7 +1302,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: left;
-  background: linear-gradient(to top, rgba(10, 9, 8, 0.75), transparent);
+  background: linear-gradient(to top, var(--color-scrim), transparent);
 }
 
 /* A local file inside a section keeps its own proportions. */
@@ -1326,7 +1339,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   font-size: 0.8125rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin: 0.5rem 0 1rem;
 }
 
@@ -1374,7 +1387,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
 .award__standing { color: var(--ink); font-weight: 600; }
 .award__standing::before { content: ' · '; color: var(--ink-faint); font-weight: 400; }
 .award__project::before { content: ' · '; color: var(--ink-faint); }
-.award__project a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+.award__project a { color: var(--accent-text); text-decoration: none; border-bottom: 1px solid transparent; }
 .award__project a:hover { border-bottom-color: currentColor; }
 
 /* Text-led: a wide reading column beside a narrower list column. */
@@ -1500,7 +1513,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 .pub__title a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   border-bottom-color: var(--color-accent);
 }
 
@@ -1521,7 +1534,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   border-bottom: 1px solid transparent;
 }
 .pub__link:hover { border-bottom-color: currentColor; }
@@ -1560,7 +1573,7 @@ a.card:hover .card__plate img { transform: scale(1.03); }
   border-bottom: 2px solid var(--accent);
   padding-bottom: 0.15rem;
 }
-.contact__email:hover { color: var(--accent); }
+.contact__email:hover { color: var(--accent-text); }
 
 .contact__links {
   display: flex;

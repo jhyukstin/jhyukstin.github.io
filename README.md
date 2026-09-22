@@ -455,18 +455,27 @@ are no hardcoded colors anywhere else:
 
 ```css
 :root {
-  --color-background: #101114;   /* page background */
-  --color-surface:    #1b1d21;   /* cards, contact block */
+  --color-background: #141416;   /* page background */
+  --color-surface:    #202023;   /* cards, contact block */
   --color-text:       #f5f5f5;   /* headings and body */
   --color-text-muted: #a1a1aa;   /* descriptions, metadata */
-  --color-accent:     #c7f36b;   /* CTAs, active nav, hovers */
-  --color-border:     #34363b;   /* dividers */
+  --color-accent:     #c43d4b;   /* CTAs, active nav, markers */
+  --color-border:     #38383d;   /* dividers */
 }
 ```
 
-A few values are derived from those (a darker well behind images, a lighter
-border for buttons, the accent hover, and the dark ink used on accent
-buttons). They sit directly underneath, each with a comment.
+A few values are derived from those (a well behind images, a lighter border
+for buttons, the accent hover, and the white ink used on accent buttons).
+They sit directly underneath, each with a comment.
+
+One of them is worth knowing about if you ever change the accent:
+**`--color-accent-text`** is the accent used for *words*. A colour dark enough
+to look right as a filled button is usually too dark to read as small type on
+a dark page, so the crimson `--color-accent` carries the buttons, markers and
+rules, and the brighter `--color-accent-text` carries anything written in the
+accent — project numbers, "View project", the hero's role line. If you pick a
+new accent, check both: the fill needs 3:1 against the background, and the
+text version needs 4.5:1.
 
 Older component names like `--paper`, `--ink` and `--line` still exist just
 below, but they are only aliases pointing at the tokens above — so you never

@@ -180,7 +180,7 @@ export function layout({ profile, base, current, title, description, path, main,
   <meta property="og:url" content="${escUrl(canonical)}">
   ${og ? `<meta property="og:image" content="${escUrl(`${profile.siteUrl.replace(/\/$/, '')}/${og}`)}">` : ''}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#101114">${fontLinks}
+  <meta name="theme-color" content="#141416">${fontLinks}
   <link rel="stylesheet" href="${escUrl(base + 'assets/css/site.css')}">
 </head>
 <body${bodyClass ? ` class="${esc(bodyClass)}"` : ''}>
