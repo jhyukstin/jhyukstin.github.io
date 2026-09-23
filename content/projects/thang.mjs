@@ -7,7 +7,7 @@
  *   release date / status ....... meta.release, meta.status, badge
  *   one-line description ........ subtitle (shown in the hero), summary (cards)
  *   roles ....................... roles
- *   prototype video ............. showcase[0].media
+ *   videos ...................... showcase[] › media
  *   screenshots ................. sections[] › media
  *   gameplay loop diagram ....... sections[] › diagram
  *
@@ -72,7 +72,7 @@ export default {
 
   // The hero subtitle is the description, so there is no separate Overview.
 
-  // ------------------------------------------------- prototype video (top)
+  // -------------------------------------------------------- videos (top)
   showcase: [
     {
       title: 'Prototype Gameplay',
@@ -81,6 +81,16 @@ export default {
           youtube: 'https://youtu.be/xAIOIIDHXV8',
           title: 'THANG! — prototype gameplay',
           caption: 'Prototype footage from the current Unreal Engine 5 build — work in progress, not final.',
+        },
+      ],
+    },
+    {
+      title: 'Gameplay Video',
+      media: [
+        {
+          youtube: 'https://youtu.be/zcte23wUrg8',
+          title: 'THANG! — gameplay',
+          caption: 'Gameplay from the in-development build — work in progress, not final.',
         },
       ],
     },
